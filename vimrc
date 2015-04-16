@@ -183,7 +183,7 @@ set lazyredraw
 set complete=.,w,b,u,U,t,i,d
 set dictionary=/usr/share/dict/american_english
 set dictionary+=/usr/share/dict/russian_words
-set dictionary+=c:/Users/kuzmeig1/vimfiles/words/english
+set dictionary+=./words/english
 set complete+=k
 
 " Syntastic settings
