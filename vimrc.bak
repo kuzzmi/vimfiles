@@ -1,0 +1,139 @@
+" Enable displaying line numbers to enable next feature working from the
+" beggining
+set number
+
+" Display absolute numbers only in insert mode
+autocmd InsertEnter * silent! :set number
+autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
+
+" Enable Pathogen
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+" If vim was started without args open NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" If NERDTree is the last window - quit vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Go to the previous window
+" autocmd VimEnter * wincmd p
+
+" Move line up/down
+nnoremap <silent> <C-J> :m .+1<CR>==
+nnoremap <silent> <C-K> :m .-2<CR>==
+inoremap <silent> <C-J> <Esc>:m .+1<CR>==gi
+inoremap <silent> <C-K> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <C-J> :m '>+1<CR>gv=gv
+vnoremap <silent> <C-K> :m '<-2<CR>gv=gv
+
+" Append to end of file
+:nmap <C-A> Go
+
+" Toggle folding by space
+nnoremap <Space> za
+onoremap <Space> <C-C>za
+
+" Duplicate current selection
+:nmap <C-D> yyP
+
+" Commenting blocks of code.
+autocmd FileType c,cpp,java,scala,js     let b:comment_leader = '// '
+autocmd FileType sh,ruby,python,coffee   let b:comment_leader = '# '
+autocmd FileType conf,fstab              let b:comment_leader = '# '
+autocmd FileType tex                     let b:comment_leader = '% '
+autocmd FileType mail                    let b:comment_leader = '> '
+autocmd FileType vim                     let b:comment_leader = '" '
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" Start scrolling 5 lines before edge
+set so=5
+
+" Tabs are 4 chars wide
+set tabstop=4
+
+" Indentation size is 4 characters
+set shiftwidth=4
+
+" Convert tabs to spaces
+set expandtab
+set smarttab
+
+" Be single lined
+set nowrap
+
+" Necesary  for lots of cool vim things
+set nocompatible
+
+" This shows what you are typing as a command.  I love this!
+set showcmd
+
+" Who doesn't like autoindent?
+set autoindent
+
+" Cool tab completion stuff
+set wildmenu
+set wildmode=list:longest,full
+
+" Ignoring case is a fun trick
+set ignorecase
+
+" And so is Artificial Intellegence!
+set smartcase
+
+" This is totally awesome - remap jj to escape in insert mode.  You'll never
+" type jj anyway, so it's great!
+inoremap jj <Esc>
+
+" Incremental searching is sexy
+set incsearch
+
+" Highlight things that we find with the search
+" set hlsearch
+
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj o<Esc>
+nnoremap <silent> zk O<Esc>
+
+" Break current line
+:nnoremap <F3> i<CR><Esc>
+
+" Center search results
+:nnoremap N Nzz
+:nnoremap n nzz
+
+" Swap ; and :
+" More useful.
+:nnoremap ; :
+:nnoremap : ;
+
+" Highlight current line
+" set cul
+hi CursorLine term=none cterm=none ctermbg=0
+
+" Don't redraw when not needed
+set lazyredraw
+
+" Autocompletion stuff...
+set complete=.,w,b,u,U,t,i,d
+
+" Remove trailing spaces on F5
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" CtrlP bind to... <C-p>
+:nnoremap <C-p> :CtrlP
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\(.(git|hg|svn)|(bower_components|coverage|doc|node_modules)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+
+" Adding some stuff to statusline
+let g:airline_section_b = '%{strftime("%c")}'
+let g:airline_section_y = '%{fugitive#statusline()}'
+
+" Copy whole file to clipboard
+:nnoremap <F4> <Esc>ggVG"*y
