@@ -130,6 +130,7 @@ hi LineNr        cterm=none ctermfg=0
 hi Comment       cterm=none ctermfg=7
 hi Search        cterm=none ctermbg=DarkGrey ctermfg=Yellow
 hi Visual        cterm=none ctermbg=DarkGrey
+hi Statement                ctermfg=12
 
 " Misc
 " ====
