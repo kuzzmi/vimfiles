@@ -8,16 +8,6 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" Project plugin
-" ==============
-"
-let g:project_enable_welcome = 1
-set rtp+=./bundle/vim-project/
-" default starting path (the home directory)
-call project#rc("c:/Users/kuzmeig1/Projects/PULSE/")
-
-Project 'portal'
-
 " Line numbers
 " ============
 "
@@ -36,9 +26,6 @@ let g:netrw_hide = 1
 let g:netrw_liststyle = 3
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Explore | endif
-
-" If NERDTree is the last window then quit Vim
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NetrwTreeListing")) | q | endif
 
 " Leader key
 " ==========
@@ -130,19 +117,17 @@ call unite#custom#profile('default', 'context', {
 \   'winheight': 10
 \ })
 
-
 " Colors
 " ======
 "
 " set cul
 hi CursorLine term=none cterm=none ctermbg=8
-hi LineNr term=bold cterm=NONE ctermfg=8 ctermbg=NONE gui=NONE guifg=Black guibg=#589A5D
-hi CursorLineNr cterm=bold ctermfg=14
-hi Normal ctermfg=White
-hi Comment ctermfg=5
-hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
-hi Visual ctermbg=DarkGrey cterm=bold,underline
-
+hi LineNr term=bold cterm=NONE ctermfg=0 ctermbg=NONE
+hi CursorLineNr cterm=bold ctermfg=Yellow
+hi Normal ctermfg=White cterm=NONE
+hi Comment ctermfg=Grey
+hi Search ctermfg=Yellow ctermbg=NONE cterm=bold
+hi Visual ctermbg=DarkGrey
 
 " Misc
 " ====
@@ -153,7 +138,7 @@ hi Visual ctermbg=DarkGrey cterm=bold,underline
 let g:airline_section_b = '%{strftime("%c")}'
 
 " Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost vimrc source %
 
 " Start scrolling 5 lines before edge
 set so=5
@@ -202,9 +187,8 @@ set lazyredraw
 
 " Autocompletion stuff...
 set complete=.,w,b,u,U,t,i,d
-set dictionary=/usr/share/dict/american_english
-set dictionary+=/usr/share/dict/russian_words
-set dictionary+=./words/english
+set dictionary=./words/english
+set dictionary+=./words/russian
 set complete+=k
 
 " Syntastic settings
