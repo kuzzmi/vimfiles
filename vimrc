@@ -8,6 +8,16 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" Project plugin
+" ==============
+"
+let g:project_enable_welcome = 1
+set rtp+=./bundle/vim-project/
+" default starting path (the home directory)
+call project#rc("c:/Users/kuzmeig1/Projects/PULSE/")
+
+Project 'portal'
+
 " Line numbers
 " ============
 "
@@ -26,14 +36,22 @@ let g:netrw_hide = 1
 let g:netrw_liststyle = 3
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Explore | endif
-nnoremap <leader>f <C-w>v<Esc>:Explore<CR>
 
 " If NERDTree is the last window then quit Vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NetrwTreeListing")) | q | endif
 
+" Leader key
+" ==========
+"
+" Has to be defined before all mappings
+let mapleader = " "
+
 " Mappings
 " ========
 "
+" Open netrw
+nnoremap <leader>f <C-w>v<Esc>:Explore<CR>
+
 " Move line up/down
 nnoremap <silent> <C-J> :m .+1<CR>==
 nnoremap <silent> <C-K> :m .-2<CR>==
@@ -45,12 +63,15 @@ vnoremap <silent> <C-K> :m '<-2<CR>gv=gv
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-l> <C-w>l
 
+" Open Project plugin
+nnoremap <silent> <F2> :Project<CR>
+
 " Append to end of file
 nnoremap <C-A> Go
 
 " Toggle folding by space
-nnoremap <Space> za
-onoremap <Space> <C-C>za
+nnoremap <leader>z za
+onoremap <leader>z <C-C>za
 
 " Duplicate current selection
 nnoremap <C-D> yyP
@@ -80,12 +101,12 @@ nnoremap ; :
 nnoremap : ;
 
 " Commenting blocks of code.
-autocmd FileType c,cpp,java,scala,js     let b:comment_leader = '// '
-autocmd FileType sh,ruby,python,coffee   let b:comment_leader = '# '
-autocmd FileType conf,fstab              let b:comment_leader = '# '
-autocmd FileType tex                     let b:comment_leader = '% '
-autocmd FileType mail                    let b:comment_leader = '> '
-autocmd FileType vim                     let b:comment_leader = '" '
+autocmd FileType c,cpp,java,scala,javascript     let b:comment_leader = '// '
+autocmd FileType sh,ruby,python,coffee           let b:comment_leader = '# '
+autocmd FileType conf,fstab                      let b:comment_leader = '# '
+autocmd FileType tex                             let b:comment_leader = '% '
+autocmd FileType mail                            let b:comment_leader = '> '
+autocmd FileType vim                             let b:comment_leader = '" '
 noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
@@ -126,8 +147,7 @@ hi Visual ctermbg=DarkGrey cterm=bold,underline
 " Misc
 " ====
 "
-" Set leader key as a Space
-" let mapleader = " "
+" Set leader key as a ,
 
 " Vim-airline customization
 let g:airline_section_b = '%{strftime("%c")}'
@@ -166,6 +186,7 @@ set wildmode=list:longest,full
 
 " Ignoring case is a fun trick
 set ignorecase
+let g:syntastic_check_on_wq = 0
 
 " And so is Artificial Intellegence!
 set smartcase
@@ -190,4 +211,3 @@ set complete+=k
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
