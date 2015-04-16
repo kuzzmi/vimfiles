@@ -24,6 +24,7 @@ autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 let g:netrw_list_hide= '^\..*'
 let g:netrw_hide = 1
 let g:netrw_liststyle = 3
+" let g:netrw_keepdir = 0
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Explore | endif
 
@@ -120,14 +121,15 @@ call unite#custom#profile('default', 'context', {
 " Colors
 " ======
 "
+" Enable 256 Colors
+set t_Co=256
 " set cul
-hi CursorLine term=none cterm=none ctermbg=8
-hi LineNr term=bold cterm=NONE ctermfg=0 ctermbg=NONE
-hi CursorLineNr cterm=bold ctermfg=Yellow
-hi Normal ctermfg=White cterm=NONE
-hi Comment ctermfg=Grey
-hi Search ctermfg=Yellow ctermbg=NONE cterm=bold
-hi Visual ctermbg=DarkGrey
+hi CursorLineNr  cterm=bold ctermfg=Yellow
+hi CursorLine    cterm=none ctermbg=8
+hi LineNr        cterm=none ctermfg=0
+hi Comment       cterm=none ctermfg=7
+hi Search        cterm=none ctermbg=DarkGrey ctermfg=Yellow
+hi Visual        cterm=none ctermbg=DarkGrey
 
 " Misc
 " ====
@@ -135,14 +137,16 @@ hi Visual ctermbg=DarkGrey
 " Set leader key as a ,
 
 " Vim-airline customization
-let g:airline_section_b = '%{strftime("%c")}'
+let g:airline_section_y = '%{strftime("%D %T")}'
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
 
 " Start scrolling 5 lines before edge
 set so=5
-
 " Tabs are 4 chars wide
 set tabstop=4
 
