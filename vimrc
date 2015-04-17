@@ -1,14 +1,18 @@
-" Pathogen
+""""""""""
+" kuzzmi .vimrc
+"
+""""""""""
+" Pathogen {{{
 " ========
 "
 " Enable
 execute pathogen#infect()
-
-" Set syntax highlighting
+" }}}
+" Syntax highlighting {{{
 syntax on
 filetype plugin indent on
-
-" Line numbers
+" }}}
+" Line numbers {{{
 " ============
 "
 " Enable
@@ -17,9 +21,9 @@ set number
 " Display absolute numbers only in Insert mode
 autocmd InsertEnter * silent! :set number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
-
-" Explore
-" ======
+" }}}
+" Explore (Nerw) {{{
+" ==============
 "
 let g:netrw_list_hide= '^\..*'
 let g:netrw_hide = 1
@@ -27,18 +31,26 @@ let g:netrw_liststyle = 3
 " let g:netrw_keepdir = 0
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Explore | endif
-
-" Leader key
+" }}}
+" Leader key {{{
 " ==========
 "
 " Has to be defined before all mappings
+" Set leader key as a ,
 let mapleader = " "
-
-" Mappings
+" }}}
+" Mappings {{{
 " ========
 "
 " Open netrw
 nnoremap <leader>f <C-w>v<Esc>:Explore<CR>
+
+" Swap go to first non-blank char with go to line beginning
+nnoremap ^ 0
+nnoremap 0 ^
+
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " Move line up/down
 nnoremap <silent> <C-J> :m .+1<CR>==
@@ -106,8 +118,8 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Copy whole file to clipboard
 nnoremap <F4> <Esc>ggVG"*y
-
-" Unite.vim
+" }}}
+" Unite.vim {{{
 " =========
 "
 nnoremap <Space>/ :Unite grep:.<cr>
@@ -117,8 +129,8 @@ call unite#custom#profile('default', 'context', {
 \   'start_insert': 1,
 \   'winheight': 10
 \ })
-
-" Colors
+" }}}
+" Colors {{{
 " ======
 "
 " Enable 256 Colors
@@ -131,11 +143,21 @@ hi Comment       cterm=none ctermfg=3
 hi Search        cterm=none ctermbg=1 ctermfg=Yellow
 hi Visual        cterm=none ctermbg=1
 hi Statement                ctermfg=15
-
-" Misc
+hi Folded                   ctermbg=1
+" }}}
+" Folding {{{
+" =======
+"
+set foldenable
+set foldlevelstart=10
+set foldmethod=indent
+" }}}
+" Misc {{{
 " ====
 "
-" Set leader key as a ,
+
+" Use modelines
+set modelines=1
 
 " Vim-airline customization
 let g:airline_section_y = '%{strftime("%D %T")}'
@@ -151,12 +173,16 @@ endif
 autocmd! bufwritepost vimrc source %
 
 " Start scrolling 5 lines before edge
-set so=5
+set so=7
+
 " Tabs are 4 chars wide
 set tabstop=4
 
 " Indentation size is 4 characters
 set shiftwidth=4
+
+" Set 2 spaces for HTML
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 " Convert tabs to spaces
 set expandtab
@@ -180,7 +206,6 @@ set wildmode=list:longest,full
 
 " Ignoring case is a fun trick
 set ignorecase
-let g:syntastic_check_on_wq = 0
 
 " And so is Artificial Intellegence!
 set smartcase
@@ -196,11 +221,17 @@ set lazyredraw
 
 " Autocompletion stuff...
 set complete=.,w,b,u,U,t,i,d
-set dictionary=./words/english
-set dictionary+=./words/russian
+" set dictionary=./words/english
+" set dictionary+=./words/russian
 set complete+=k
 
-" Syntastic settings
+" Syntastic {{{
+" =========
+"
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
