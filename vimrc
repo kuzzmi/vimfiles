@@ -81,12 +81,15 @@ inoremap <C-D> <Esc>yyPi
 vnoremap > >gv
 vnoremap < <gv
 
+" Insert one character
+nnoremap <silent> <C-i> i<Space><Esc>r
+
 " Remove search highlighting
 nnoremap <silent> <C-n> :noh<CR>
 
 " Create Blank Newlines and stay in Normal mode
-nnoremap <silent> zj o<Esc>
-nnoremap <silent> zk O<Esc>
+nnoremap <silent> <leader>j o<Esc>
+nnoremap <silent> <leader>k O<Esc>
 
 " Break current line with <CR> and stay in normal mode
 nnoremap <F3> i<CR><Esc>
