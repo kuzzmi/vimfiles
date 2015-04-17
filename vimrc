@@ -125,12 +125,12 @@ call unite#custom#profile('default', 'context', {
 set t_Co=256
 " set cul
 hi CursorLineNr  cterm=bold ctermfg=Yellow
-hi CursorLine    cterm=none ctermbg=8
-hi LineNr        cterm=none ctermfg=0
-hi Comment       cterm=none ctermfg=7
-hi Search        cterm=none ctermbg=DarkGrey ctermfg=Yellow
-hi Visual        cterm=none ctermbg=DarkGrey
-hi Statement                ctermfg=12
+hi CursorLine    cterm=none ctermbg=1
+hi LineNr        cterm=none ctermfg=2
+hi Comment       cterm=none ctermfg=3
+hi Search        cterm=none ctermbg=1 ctermfg=Yellow
+hi Visual        cterm=none ctermbg=1
+hi Statement                ctermfg=15
 
 " Misc
 " ====
@@ -142,6 +142,10 @@ let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+" Use powerline fonts only for non-Windows machine
+if has("win32") || has("win16")
+    let g:airline_powerline_fonts = 0
+endif
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
