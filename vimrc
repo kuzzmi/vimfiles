@@ -18,7 +18,7 @@ filetype plugin indent on
 " Enable
 set number
 
-" Display absolute numbers only in Insert mode
+" Display absolute numbers only for current line
 autocmd InsertEnter * silent! :set number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 " }}}
@@ -164,6 +164,7 @@ let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
 " Use powerline fonts only for non-Windows machine
 if has("win32") || has("win16")
     let g:airline_powerline_fonts = 0
