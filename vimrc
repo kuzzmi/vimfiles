@@ -49,8 +49,12 @@ nnoremap <leader>f <C-w>v<Esc>:Explore<CR>
 nnoremap ^ 0
 nnoremap 0 ^
 
-" highlight last inserted text
+" Highlight last inserted text
 nnoremap gV `[v`]
+
+" Spell checker toggle
+nnoremap <silent> <F9> :set spell!<CR>
+inoremap <silent> <F9> <Esc>:set spell!<CR>gi
 
 " Move line up/down
 nnoremap <silent> <C-J> :m .+1<CR>==
@@ -60,6 +64,7 @@ inoremap <silent> <C-K> <Esc>:m .-2<CR>==gi
 vnoremap <silent> <C-J> :m '>+1<CR>gv=gv
 vnoremap <silent> <C-K> :m '<-2<CR>gv=gv
 
+" Switch between windows
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-l> <C-w>l
 
@@ -67,7 +72,18 @@ nnoremap <silent> <C-l> <C-w>l
 nnoremap <silent> <F2> :Project<CR>
 
 " Append to end of file
-nnoremap <C-A> Go
+nnoremap <leader>a Go
+
+" Increment selected numbers
+function! Incr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfunction
+vnoremap <C-a> :call Incr()<CR>
 
 " Toggle folding by space
 nnoremap <leader>z za
@@ -140,13 +156,13 @@ call unite#custom#profile('default', 'context', {
 set t_Co=256
 " set cul
 hi CursorLineNr  cterm=bold ctermfg=Yellow
-hi CursorLine    cterm=none ctermbg=1
-hi LineNr        cterm=none ctermfg=2
-hi Comment       cterm=none ctermfg=3
-hi Search        cterm=none ctermbg=1 ctermfg=Yellow
-hi Visual        cterm=none ctermbg=1
-hi Statement                ctermfg=15
-hi Folded                   ctermbg=1
+hi CursorLine    cterm=none ctermbg=240
+hi LineNr        cterm=none ctermfg=239
+hi Comment       cterm=none ctermfg=245
+hi Search        cterm=bold ctermbg=1 ctermfg=White
+hi Visual        cterm=none ctermbg=237
+hi Statement                ctermfg=White
+hi Folded                   ctermfg=238 ctermbg=214
 " }}}
 " Folding {{{
 " =======
@@ -158,6 +174,10 @@ set foldmethod=indent
 " Misc {{{
 " ====
 "
+
+" Some Markdown settings
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd FileType markdown setlocal linebreak wrap
 
 " Use modelines
 set modelines=1
@@ -225,7 +245,7 @@ set lazyredraw
 
 " Autocompletion stuff...
 set complete=.,w,b,u,U,t,i,d
-" set dictionary=./words/english
+set dictionary=./words/english
 " set dictionary+=./words/russian
 set complete+=k
 
