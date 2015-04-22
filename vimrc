@@ -22,7 +22,7 @@ set number
 autocmd InsertEnter * silent! :set number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 " }}}
-" Explore (Nerw) {{{
+" Explore (Netrw) {{{
 " ==============
 "
 let g:netrw_list_hide= '^\..*'
@@ -138,6 +138,59 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " Copy whole file to clipboard
 nnoremap <F4> <Esc>ggVG"*y
 " }}}
+" " Dvorak mappings {{{
+" " ===============
+" inoremap a a
+" inoremap b x
+" inoremap c j
+" inoremap d e
+" inoremap e .
+" inoremap f u
+" inoremap g i
+" inoremap h d
+" inoremap i c
+" inoremap j h
+" inoremap k t
+" inoremap l n
+" inoremap m m
+" inoremap n b
+" inoremap o r
+" inoremap p l
+" inoremap q '
+" inoremap r p
+" inoremap s o
+" inoremap t y
+" inoremap u g
+" inoremap v k
+" inoremap w ,
+" inoremap x q
+" inoremap y f
+" inoremap z ;
+" inoremap ; s
+" inoremap ' -
+" inoremap " _
+" inoremap , w
+" inoremap . v
+" inoremap / z
+" inoremap A A
+" inoremap B X
+" inoremap C J
+" inoremap D E
+" inoremap E >
+" inoremap F U
+" inoremap G I
+" inoremap H D
+" inoremap I C
+" inoremap J H
+" inoremap K T
+" inoremap L N
+" inoremap M M
+" inoremap N B
+" inoremap O R
+" inoremap P L
+" inoremap Q "
+" inoremap R P
+" " }}}
 " Unite.vim {{{
 " =========
 "
@@ -155,14 +208,15 @@ call unite#custom#profile('default', 'context', {
 " Enable 256 Colors
 set t_Co=256
 " set cul
-hi CursorLineNr  cterm=bold ctermfg=Yellow
-hi CursorLine    cterm=none ctermbg=240
-hi LineNr        cterm=none ctermfg=239
-hi Comment       cterm=none ctermfg=245
-hi Search        cterm=bold ctermbg=1 ctermfg=White
-hi Visual        cterm=none ctermbg=237
-hi Statement                ctermfg=White
-hi Folded                   ctermfg=238 ctermbg=214
+" hi CursorLineNr  cterm=bold ctermfg=Yellow
+" hi CursorLine    cterm=none ctermbg=240
+" hi LineNr        cterm=none ctermfg=239
+" hi Comment       cterm=none ctermfg=245
+" hi Search        cterm=bold ctermbg=1 ctermfg=White
+" hi Visual        cterm=none ctermbg=237
+" hi Statement                ctermfg=White
+" hi Folded                   ctermfg=238 ctermbg=214
+colorscheme molokai
 " }}}
 " Folding {{{
 " =======
@@ -193,10 +247,19 @@ if has("win32") || has("win16")
     let g:airline_powerline_fonts = 0
 endif
 
+" If using ConEmu
+if !empty($CONEMUBUILD)
+    set term=pcansi
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+"     set bs=indent,eol,start
+endif
+
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
 
-" Start scrolling 5 lines before edge
+" Start scrolling 7 lines before edge
 set so=7
 
 " Tabs are 4 chars wide
@@ -257,5 +320,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 " }}}
+
 
 " vim:foldmethod=marker:foldlevel=0
