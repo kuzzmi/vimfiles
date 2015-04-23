@@ -11,6 +11,7 @@ execute pathogen#infect()
 " Syntax highlighting {{{
 syntax on
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 " }}}
 " Line numbers {{{
 " ============
@@ -113,6 +114,9 @@ nnoremap <F3> i<CR><Esc>
 " Search mappings: These will make it so that going to the next one in a search will center on the line it's found in.  map N Nzz
 nnoremap n nzz
 nnoremap N Nzz
+
+" Surround word with {{ }}. Used in Angular
+nnoremap <silent> <leader>b i{{<Esc>ea}}<Esc>bb
 
 " Swap ; and :
 " Convenient.
