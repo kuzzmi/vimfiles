@@ -44,7 +44,7 @@ let mapleader = " "
 " ========
 "
 " Open netrw
-nnoremap <leader>f <C-w>v<Esc>:Explore<CR>
+nnoremap <leader>f :Explore<CR>
 
 " Swap go to first non-blank char with go to line beginning
 nnoremap ^ 0
@@ -228,6 +228,9 @@ colorscheme molokai
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
+" Adding new folding method: 
+au FileType javascript call JavaScriptFold()
+
 " }}}
 " Misc {{{
 " ====
