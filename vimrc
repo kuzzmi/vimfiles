@@ -229,12 +229,18 @@ set foldenable
 set foldlevelstart=10
 set foldmethod=indent
 " Adding new folding method: 
-au FileType javascript call JavaScriptFold()
+" au FileType javascript call JavaScriptFold()
 
 " }}}
 " Misc {{{
 " ====
 "
+
+" Disable swap files from being created
+set noswapfile
+
+" Set new directory for backup files
+set nobackup
 
 " Some Markdown settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
