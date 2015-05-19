@@ -37,7 +37,7 @@ let g:netrw_liststyle = 3
 " ==========
 "
 " Has to be defined before all mappings
-" Set leader key as a ,
+" Set leader key as a Space key
 let mapleader = " "
 " }}}
 " Mappings {{{
@@ -72,6 +72,12 @@ nnoremap <silent> <C-l> <C-w>l
 " Open Project plugin
 nnoremap <silent> <F2> :Project<CR>
 
+" Rename current word
+nnoremap <leader>d yiw:%s:<C-R>":
+
+" Shortcut to enter visual block substitution
+vnoremap <leader>d :s/\%V
+
 " Append to end of file
 nnoremap <leader>a Go
 
@@ -86,7 +92,7 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
-" Toggle folding by space
+" Toggle folding by <Space-Z>
 nnoremap <leader>z za
 onoremap <leader>z <C-C>za
 
@@ -228,8 +234,8 @@ colorscheme molokai
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
-" Adding new folding method: 
-" au FileType javascript call JavaScriptFold()
+" Adding new folding method:
+au FileType javascript call JavaScriptFold()
 
 " }}}
 " Misc {{{
