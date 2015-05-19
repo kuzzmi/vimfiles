@@ -205,8 +205,11 @@ nnoremap <F4> <Esc>ggVG"*y
 " =========
 "
 nnoremap <Space>/ :Unite grep:.<cr>
-nnoremap <C-p> :Unite file_rec/async<cr>
+"/async
+nnoremap <C-p> :<C-u>Unite -start-insert file_rec:!<CR>
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '\(\.bower_components\|\.node_modules\)')
+call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules/\|bower_components/')
 call unite#custom#profile('default', 'context', {
 \   'start_insert': 1,
 \   'winheight': 10
