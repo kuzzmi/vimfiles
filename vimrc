@@ -81,6 +81,9 @@ vnoremap <leader>d :s/\%V
 " Append to end of file
 nnoremap <leader>a Go
 
+" Git commands
+nnoremap <F10> :Gstatus<CR>
+
 " Increment selected numbers
 function! Incr()
     let a = line('.') - line("'<")
@@ -330,9 +333,9 @@ set lazyredraw
 
 " Autocompletion stuff...
 set complete=.,w,b,u,U,t,i,d
-set dictionary=./words/english
+" set dictionary=./words/english
 " set dictionary+=./words/russian
-set complete+=k
+" set complete+=k
 
 " Syntastic {{{
 " =========
