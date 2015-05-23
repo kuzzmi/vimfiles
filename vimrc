@@ -37,7 +37,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Explore | endif
 " ==========
 "
 " Has to be defined before all mappings
-" Set leader key as a ,
+" Set leader key as a Space key
 let mapleader = " "
 " }}}
 " Mappings {{{
@@ -72,8 +72,17 @@ nnoremap <silent> <C-l> <C-w>l
 " Open Project plugin
 nnoremap <silent> <F2> :Project<CR>
 
+" Rename current word
+nnoremap <leader>d yiw:%s:<C-R>":
+
+" Shortcut to enter visual block substitution
+vnoremap <leader>d :s/\%V
+
 " Append to end of file
 nnoremap <leader>a Go
+
+" Git commands
+nnoremap <F10> :Gstatus<CR>
 
 " Increment selected numbers
 function! Incr()
@@ -86,7 +95,7 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
-" Toggle folding by space
+" Toggle folding by <Space-Z>
 nnoremap <leader>z za
 onoremap <leader>z <C-C>za
 
@@ -199,8 +208,11 @@ nnoremap <F4> <Esc>ggVG"*y
 " =========
 "
 nnoremap <Space>/ :Unite grep:.<cr>
-nnoremap <C-p> :Unite file_rec/async<cr>
+"/async
+nnoremap <C-p> :<C-u>Unite -start-insert file_rec:!<CR>
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '\(\.bower_components\|\.node_modules\)')
+call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules/\|bower_components/')
 call unite#custom#profile('default', 'context', {
 \   'start_insert': 1,
 \   'winheight': 10
@@ -229,12 +241,18 @@ set foldenable
 set foldlevelstart=10
 set foldmethod=indent
 " Adding new folding method:
-" au FileType javascript call JavaScriptFold()
+au FileType javascript call JavaScriptFold()
 
 " }}}
 " Misc {{{
 " ====
 "
+
+" Disable swap files from being created
+set noswapfile
+
+" Set new directory for backup files
+set nobackup
 
 " Some Markdown settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
@@ -341,9 +359,9 @@ set lazyredraw
 
 " Autocompletion stuff...
 set complete=.,w,b,u,U,t,i,d
-set dictionary=./words/english
+" set dictionary=./words/english
 " set dictionary+=./words/russian
-set complete+=k
+" set complete+=k
 
 " Syntastic {{{
 " =========
