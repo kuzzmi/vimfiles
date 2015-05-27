@@ -23,15 +23,15 @@ set number
 autocmd InsertEnter * silent! :set number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 " }}}
-" Explore (Netrw) {{{
+" Explore (NERDTree) {{{
 " ==============
 "
-let g:netrw_list_hide= '^\..*'
-let g:netrw_hide = 1
-let g:netrw_liststyle = 3
+" let g:netrw_list_hide= '^\..*'
+" let g:netrw_hide = 1
+" let g:netrw_liststyle = 3
 " let g:netrw_keepdir = 0
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Explore | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " }}}
 " Leader key {{{
 " ==========
@@ -292,6 +292,9 @@ set tabstop=4
 
 " Indentation size is 4 characters
 set shiftwidth=4
+
+" Make backspace work like most other apps
+set backspace=2
 
 " Set 2 spaces for HTML
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
