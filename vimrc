@@ -258,19 +258,45 @@ set nobackup
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType markdown setlocal linebreak wrap
 
+" Font settings
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Consolas_for_Powerline_FixedD:h13
+  endif
+endif
+
+" Remove widget stuff from window in gVim
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+
 " Use modelines
 set modelines=1
 
 " Vim-airline customization
 let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+" let g:airline_symbols = {}
+" let g:airline_left_sep = "\u2b80" "use double quotes here
+" let g:airline_left_alt_sep = "\u2b81"
+" let g:airline_right_sep = "\u2b82"
+" let g:airline_right_alt_sep = "\u2b83"
+" let g:airline_symbols.branch = "\u2b60"
+" let g:airline_symbols.readonly = "\u2b64"
+" let g:airline_symbols.linenr = "\u2b61"
+
 " Use powerline fonts only for non-Windows machine
-if has("win32") || has("win16")
-    let g:airline_powerline_fonts = 0
-endif
+" if has("win32") || has("win16")
+"     let g:airline_powerline_fonts = 0
+" endif
 
 " If using ConEmu
 if !empty($CONEMUBUILD)
