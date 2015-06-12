@@ -32,6 +32,7 @@ autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 " let g:netrw_keepdir = 0
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " }}}
 " Leader key {{{
 " ==========
@@ -44,7 +45,8 @@ let mapleader = " "
 " ========
 "
 " Open netrw
-nnoremap <leader>f :Explore<CR>
+" nnoremap <leader>f :Explore<CR>
+nnoremap <leader>f :NERDTreeToggle<CR>
 
 " Swap go to first non-blank char with go to line beginning
 nnoremap ^ 0
@@ -58,16 +60,18 @@ nnoremap <silent> <F9> :set spell!<CR>
 inoremap <silent> <F9> <Esc>:set spell!<CR>gi
 
 " Move line up/down
-nnoremap <silent> <C-J> :m .+1<CR>==
-nnoremap <silent> <C-K> :m .-2<CR>==
-inoremap <silent> <C-J> <Esc>:m .+1<CR>==gi
-inoremap <silent> <C-K> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <C-J> :m '>+1<CR>gv=gv
-vnoremap <silent> <C-K> :m '<-2<CR>gv=gv
+nnoremap <silent> <C-+> :m .+1<CR>==
+nnoremap <silent> <C-=> :m .-2<CR>==
+inoremap <silent> <C-+> <Esc>:m .+1<CR>==gi
+inoremap <silent> <C-=> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <C-+> :m '>+1<CR>gv=gv
+vnoremap <silent> <C-=> :m '<-2<CR>gv=gv
 
 " Switch between windows
-nnoremap <silent> <C-h> <C-w>h
-nnoremap <silent> <C-l> <C-w>l
+nnoremap <silent> <C-K> <C-W>k
+nnoremap <silent> <C-J> <C-W>j
+nnoremap <silent> <C-H> <C-W>h
+nnoremap <silent> <C-L> <C-W>l
 
 " Open Project plugin
 nnoremap <silent> <F2> :Project<CR>
@@ -283,15 +287,16 @@ let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
 " let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="tomorrow"
 
 " let g:airline_symbols = {}
-" let g:airline_left_sep = "\u2b80" "use double quotes here
-" let g:airline_left_alt_sep = "\u2b81"
-" let g:airline_right_sep = "\u2b82"
-" let g:airline_right_alt_sep = "\u2b83"
-" let g:airline_symbols.branch = "\u2b60"
-" let g:airline_symbols.readonly = "\u2b64"
-" let g:airline_symbols.linenr = "\u2b61"
+" let g:airline_left_sep = "\uE0B0" "use double quotes here
+" let g:airline_left_alt_sep = "\uE0B1"
+" let g:airline_right_sep = "\uE0B2"
+" let g:airline_right_alt_sep = "\uE0B3"
+" let g:airline_symbols.branch = "\uE0A0"
+" let g:airline_symbols.readonly = "\uE0A2"
+" let g:airline_symbols.linenr = "\uE0A1"
 
 " Use powerline fonts only for non-Windows machine
 " if has("win32") || has("win16")
@@ -361,7 +366,7 @@ set hlsearch
 set lazyredraw
 
 " Autocompletion stuff...
-set complete=.,w,b,u,U,t,i,d
+" set complete=.,w,b,u,U,t,i,d
 " set dictionary=./words/english
 " set dictionary+=./words/russian
 " set complete+=k
