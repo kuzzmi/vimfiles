@@ -262,17 +262,6 @@ set nobackup
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType markdown setlocal linebreak wrap
 
-" Font settings
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=Consolas_for_Powerline_FixedD:h13
-  endif
-endif
-
 " Remove widget stuff from window in gVim
 set guioptions-=m
 set guioptions-=T
@@ -285,23 +274,28 @@ set modelines=1
 " Vim-airline customization
 let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
-" let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="tomorrow"
 
-" let g:airline_symbols = {}
-" let g:airline_left_sep = "\uE0B0" "use double quotes here
-" let g:airline_left_alt_sep = "\uE0B1"
-" let g:airline_right_sep = "\uE0B2"
-" let g:airline_right_alt_sep = "\uE0B3"
-" let g:airline_symbols.branch = "\uE0A0"
-" let g:airline_symbols.readonly = "\uE0A2"
-" let g:airline_symbols.linenr = "\uE0A1"
-
-" Use powerline fonts only for non-Windows machine
-" if has("win32") || has("win16")
-"     let g:airline_powerline_fonts = 0
-" endif
+" Font settings
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Consolas_for_Powerline_FixedD:h13
+    set encoding=utf-8
+    let g:airline_symbols = {}
+    let g:airline_left_sep = "\u2b80"
+    let g:airline_left_alt_sep = "\u2b81"
+    let g:airline_right_sep = "\u2b82"
+    let g:airline_right_alt_sep = "\u2b83"
+    let g:airline_symbols.branch = "\u2b60"
+    let g:airline_symbols.readonly = "\u2b64"
+    let g:airline_symbols.linenr = "\u2b61"
+  endif
+endif
 
 " If using ConEmu
 if !empty($CONEMUBUILD)
@@ -370,7 +364,7 @@ set lazyredraw
 " set dictionary=./words/english
 " set dictionary+=./words/russian
 " set complete+=k
-
+" }}}
 " Syntastic {{{
 " =========
 "
@@ -379,6 +373,5 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 " }}}
-
 
 " vim:foldmethod=marker:foldlevel=0
