@@ -11,6 +11,7 @@ execute pathogen#infect()
 " Syntax highlighting {{{
 syntax on
 filetype plugin indent on
+filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 " }}}
 " Line numbers {{{
@@ -84,7 +85,7 @@ nnoremap <silent> <F2> :Project<CR>
 nnoremap <leader>d yiw:%s:<C-R>":
 
 " Shortcut to enter visual block substitution
-vnoremap <leader>d :s/\%V
+vnoremap <leader>d y<Esc>:%s:<C-R>":
 
 " Append to end of file
 nnoremap <leader>a Go
@@ -147,14 +148,7 @@ nnoremap ; :
 nnoremap : ;
 
 " Commenting blocks of code.
-autocmd FileType c,cpp,java,scala,javascript     let b:comment_leader = '// '
-autocmd FileType sh,ruby,python,coffee           let b:comment_leader = '# '
-autocmd FileType conf,fstab                      let b:comment_leader = '# '
-autocmd FileType tex                             let b:comment_leader = '% '
-autocmd FileType mail                            let b:comment_leader = '> '
-autocmd FileType vim                             let b:comment_leader = '" '
-noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+nnoremap <leader>c gcc
 
 " Remap jj to Escape in Insert mode
 inoremap jj <Esc>
