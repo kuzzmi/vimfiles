@@ -48,6 +48,10 @@ let mapleader = " "
 " nnoremap <leader>f :Explore<CR>
 nnoremap <leader>f :NERDTreeToggle<CR>
 
+" Beautify on different FileTypes
+autocmd FileType javascript nnoremap <silent> <leader>u :call JsBeautify()<CR>
+autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
+
 " Swap go to first non-blank char with go to line beginning
 nnoremap ^ 0
 nnoremap 0 ^
@@ -87,6 +91,12 @@ nnoremap <leader>a Go
 
 " Git commands
 nnoremap <F10> :Gstatus<CR>
+
+" TypeScript support
+autocmd FileType typescript nnoremap <C-b> :make<CR>
+autocmd FileType typescript inoremap <C-Space> <C-x><C-o>
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 " Increment selected numbers
 function! Incr()
@@ -245,7 +255,7 @@ set foldenable
 set foldlevelstart=10
 set foldmethod=indent
 " Adding new folding method:
-au FileType javascript call JavaScriptFold()
+" au FileType javascript call JavaScriptFold()
 
 " }}}
 " Misc {{{
@@ -375,3 +385,4 @@ let g:syntastic_auto_loc_list = 1
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
+
