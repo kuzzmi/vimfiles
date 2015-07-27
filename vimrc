@@ -47,7 +47,13 @@ let mapleader = " "
 "
 " Open netrw
 " nnoremap <leader>f :Explore<CR>
+" Open NERDTree
 nnoremap <leader>f :NERDTreeToggle<CR>
+
+" Toggle fullscreen
+nnoremap <silent> <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+vnoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+inoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 
 " Beautify on different FileTypes
 autocmd FileType javascript nnoremap <silent> <leader>u :call JsBeautify()<CR>
@@ -56,6 +62,10 @@ autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 " Swap go to first non-blank char with go to line beginning
 nnoremap ^ 0
 nnoremap 0 ^
+
+" Toggle distraction modee
+let g:limelight_default_coefficient = 0.8
+nnoremap <silent> <leader>] :Limelight!!<CR>:Goyo<CR>
 
 " Highlight last inserted text
 nnoremap gV `[v`]
@@ -231,16 +241,8 @@ call unite#custom#profile('default', 'context', {
 "
 " Enable 256 Colors
 set t_Co=256
-" set cul
-" hi CursorLineNr  cterm=bold ctermfg=Yellow
-" hi CursorLine    cterm=none ctermbg=240
-" hi LineNr        cterm=none ctermfg=239
-" hi Comment       cterm=none ctermfg=245
-" hi Search        cterm=bold ctermbg=1 ctermfg=White
-" hi Visual        cterm=none ctermbg=237
-" hi Statement                ctermfg=White
-" hi Folded                   ctermfg=238 ctermbg=214
-colorscheme molokai
+let g:seoul256_background = 236
+colorscheme seoul256
 " }}}
 " Folding {{{
 " =======
@@ -280,6 +282,7 @@ let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="tomorrow"
+set encoding=utf-8
 
 " Font settings
 if has("gui_running")
@@ -289,7 +292,6 @@ if has("gui_running")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
     set guifont=Consolas_for_Powerline_FixedD:h13
-    set encoding=utf-8
     let g:airline_symbols = {}
     let g:airline_left_sep = "\u2b80"
     let g:airline_left_alt_sep = "\u2b81"
