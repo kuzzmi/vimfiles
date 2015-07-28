@@ -16,7 +16,7 @@ for line in BUNDLE_LIST:
         plus = 'null'
 
     if plus == 'null':
-        folder = line.split('/').pop().strip()
+        folder = 'bundle/' + line.split('/').pop().strip()
         print folder
         print line
         Repo.clone_from(line.strip(), folder)
