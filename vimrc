@@ -34,6 +34,7 @@ autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeCopyCmd= 'cp -r'
 " }}}
 " Leader key {{{
 " ==========
@@ -56,6 +57,10 @@ autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 " Swap go to first non-blank char with go to line beginning
 nnoremap ^ 0
 nnoremap 0 ^
+
+" Toggle distraction modee
+let g:limelight_default_coefficient = 0.8
+nnoremap <silent> <leader>] :Limelight!!<CR>:Goyo<CR>
 
 " Highlight last inserted text
 nnoremap gV `[v`]
@@ -240,7 +245,9 @@ set t_Co=256
 " hi Visual        cterm=none ctermbg=237
 " hi Statement                ctermfg=White
 " hi Folded                   ctermfg=238 ctermbg=214
-colorscheme molokai
+" colorscheme molokai
+let g:seoul256_background = 236
+colorscheme seoul256
 " }}}
 " Folding {{{
 " =======
@@ -280,6 +287,7 @@ let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="tomorrow"
+set encoding=utf-8
 
 " Font settings
 if has("gui_running")
@@ -289,7 +297,6 @@ if has("gui_running")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
     set guifont=Consolas_for_Powerline_FixedD:h13
-    set encoding=utf-8
     let g:airline_symbols = {}
     let g:airline_left_sep = "\u2b80"
     let g:airline_left_alt_sep = "\u2b81"
