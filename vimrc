@@ -52,9 +52,11 @@ let mapleader = " "
 nnoremap <leader>f :NERDTreeToggle<CR>
 
 " Toggle fullscreen
-nnoremap <silent> <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-vnoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-inoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+if has("gui_running") && has("gui_win32")
+    nnoremap <silent> <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    vnoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+    inoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+endif
 
 " Beautify on different FileTypes
 autocmd FileType javascript nnoremap <silent> <leader>u :call JsBeautify()<CR>
@@ -383,4 +385,3 @@ let g:syntastic_auto_loc_list = 1
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
-
