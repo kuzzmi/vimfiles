@@ -48,7 +48,13 @@ let mapleader = " "
 "
 " Open netrw
 " nnoremap <leader>f :Explore<CR>
+" Open NERDTree
 nnoremap <leader>f :NERDTreeToggle<CR>
+
+" Toggle fullscreen
+nnoremap <silent> <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+vnoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
+inoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 
 " Beautify on different FileTypes
 autocmd FileType javascript nnoremap <silent> <leader>u :call JsBeautify()<CR>
@@ -236,16 +242,7 @@ call unite#custom#profile('default', 'context', {
 "
 " Enable 256 Colors
 set t_Co=256
-" set cul
-" hi CursorLineNr  cterm=bold ctermfg=Yellow
-" hi CursorLine    cterm=none ctermbg=240
-" hi LineNr        cterm=none ctermfg=239
-" hi Comment       cterm=none ctermfg=245
-" hi Search        cterm=bold ctermbg=1 ctermfg=White
-" hi Visual        cterm=none ctermbg=237
-" hi Statement                ctermfg=White
-" hi Folded                   ctermfg=238 ctermbg=214
-" colorscheme molokai
+
 let g:seoul256_background = 236
 colorscheme seoul256
 " }}}

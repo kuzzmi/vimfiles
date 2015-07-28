@@ -1,0 +1,67 @@
++ Autopopup autocompletion
+git@github.com:vim-scripts/autocomplpop.git
+
++ Nerdtree
+git@github.com:scrooloose/nerdtree.git
+
++ Distraction free editing
+git@github.com:junegunn/goyo.vim.git
+git@github.com:junegunn/limelight.vim.git
+
++ Cool colorscheme
+git@github.com:junegunn/seoul256.vim.git
+
++ Commenting stuff
+git@github.com:tomtom/tcomment_vim.git
+
++ JavaScript lookup
+git@github.com:marijnh/tern_for_vim.git
+
++ Some libraries
+git@github.com:tomtom/tlib_vim.git
+
++ TypeScript support
+git@github.com:Quramy/tsuquyomi.git
+git@github.com:leafgarland/typescript-vim.git
+
++ Syntax checking
+git@github.com:scrooloose/syntastic.git
+git@github.com:othree/javascript-libraries-syntax.vim.git
+
++ Unite. Cool stuff 
+git@github.com:Shougo/unite.vim.git
+
++ Vim Addon MW utils
+git@github.com:MarcWeber/vim-addon-mw-utils.git
+
++ Vim Airline
+git@github.com:bling/vim-airline.git
+
++ Git plugin
+git@github.com:tpope/vim-fugitive.git
+
++ Autoreload Makrdown
+git@github.com:suan/vim-instant-markdown.git
+
++ Jade hightlighting
+git@github.com:digitaltoad/vim-jade.git
+
++ JavaScript syntax
++vim-javascript-syntax
++vim-javascript
+
++ JS Beautify
+git@github.com:maksimr/vim-jsbeautify.git
+
++ Surround plugin
+git@github.com:tpope/vim-surround.git
+
++ Repeater for plugins
+git@github.com:tpope/vim-repeat.git
+
++ Snippets
+git@github.com:garbas/vim-snipmate.git
+git@github.com:honza/vim-snippets.git
+
++ Vimproc
+git@github.com:Shougo/vimproc.vim.git
