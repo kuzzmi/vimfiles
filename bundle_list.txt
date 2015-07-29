@@ -68,3 +68,9 @@ https://github.com/Shougo/vimproc.vim.git
 
 + YouCompleteMe
 https://github.com/Valloric/YouCompleteMe 
+
++ Autoclose paranthesis
+https://github.com/jiangmiao/auto-pairs
+
++ WOOOHOOO Emmet!!!
+https://github.com/mattn/emmet-vim

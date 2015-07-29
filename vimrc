@@ -66,6 +66,9 @@ autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 nnoremap ^ 0
 nnoremap 0 ^
 
+" Emmet.vim
+let g:user_emmet_leader_key=','
+
 " Toggle distraction modee
 let g:limelight_default_coefficient = 0.8
 nnoremap <silent> <leader>] :Limelight!!<CR>:Goyo<CR>
@@ -245,7 +248,7 @@ call unite#custom#profile('default', 'context', {
 " Enable 256 Colors
 set t_Co=256
 
-let g:seoul256_background = 236
+let g:seoul256_background = 234
 colorscheme seoul256
 " }}}
 " Folding {{{
@@ -288,6 +291,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="tomorrow"
 set encoding=utf-8
 
+let g:airline_powerline_fonts = 1
+
 " Font settings
 if has("gui_running")
   if has("gui_gtk2")
@@ -295,26 +300,27 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Consolas_for_Powerline_FixedD:h13
-    let g:airline_symbols = {}
-    let g:airline_left_sep = "\u2b80"
-    let g:airline_left_alt_sep = "\u2b81"
-    let g:airline_right_sep = "\u2b82"
-    let g:airline_right_alt_sep = "\u2b83"
-    let g:airline_symbols.branch = "\u2b60"
-    let g:airline_symbols.readonly = "\u2b64"
-    let g:airline_symbols.linenr = "\u2b61"
+    set guifont=Anonymice\ Powerline:h13
+    let g:airline_powerline_fonts = 1
+    " let g:airline_symbols = {}
+    " let g:airline_left_sep = "\u2b80"
+    " let g:airline_left_alt_sep = "\u2b81"
+    " let g:airline_right_sep = "\u2b82"
+    " let g:airline_right_alt_sep = "\u2b83"
+    " let g:airline_symbols.branch = "\u2b60"
+    " let g:airline_symbols.readonly = "\u2b64"
+    " let g:airline_symbols.linenr = "\u2b61"
   endif
-endif
-
-" If using ConEmu
-if !empty($CONEMUBUILD)
+else " If using ConEmu
+  if !empty($CONEMUBUILD)
     set term=pcansi
     set t_Co=256
     let &t_AB="\e[48;5;%dm"
     let &t_AF="\e[38;5;%dm"
-"     set bs=indent,eol,start
+  "   set bs=indent,eol,start
+  endif
 endif
+
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
