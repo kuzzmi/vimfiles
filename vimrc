@@ -67,11 +67,13 @@ nnoremap ^ 0
 nnoremap 0 ^
 
 " Emmet.vim
-let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key='<C-q>'
 
 " Toggle distraction modee
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 let g:limelight_default_coefficient = 0.8
-nnoremap <silent> <leader>] :Limelight!!<CR>:Goyo<CR>
+nnoremap <silent> <leader>] :Goyo<CR>
 
 " Highlight last inserted text
 nnoremap gV `[v`]
@@ -291,8 +293,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="tomorrow"
 set encoding=utf-8
 
-let g:airline_powerline_fonts = 1
-
 " Font settings
 if has("gui_running")
   if has("gui_gtk2")
@@ -300,7 +300,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Anonymice\ Powerline:h13
+    set guifont=Inconsolata-g\ for\ Powerline:h11
     let g:airline_powerline_fonts = 1
     " let g:airline_symbols = {}
     " let g:airline_left_sep = "\u2b80"
@@ -311,7 +311,8 @@ if has("gui_running")
     " let g:airline_symbols.readonly = "\u2b64"
     " let g:airline_symbols.linenr = "\u2b61"
   endif
-else " If using ConEmu
+else 
+  " If using ConEmu
   if !empty($CONEMUBUILD)
     set term=pcansi
     set t_Co=256
