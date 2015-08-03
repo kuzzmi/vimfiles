@@ -273,6 +273,10 @@ set noswapfile
 " Set new directory for backup files
 set nobackup
 
+" Disable bell
+set vb
+set t_vb=
+
 " Some Markdown settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType markdown setlocal linebreak wrap

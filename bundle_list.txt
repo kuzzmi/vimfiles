@@ -28,7 +28,7 @@ https://github.com/leafgarland/typescript-vim.git
 https://github.com/scrooloose/syntastic.git
 https://github.com/othree/javascript-libraries-syntax.vim.git
 
-+ Unite. Cool stuff 
++ Unite. Cool stuff
 https://github.com/Shougo/unite.vim.git
 
 + Vim Addon MW utils
@@ -67,10 +67,13 @@ https://github.com/honza/vim-snippets.git
 https://github.com/Shougo/vimproc.vim.git
 
 + YouCompleteMe
-https://github.com/Valloric/YouCompleteMe 
++ https://github.com/Valloric/YouCompleteMe
 
 + Autoclose paranthesis
 https://github.com/jiangmiao/auto-pairs
 
 + WOOOHOOO Emmet!!!
 https://github.com/mattn/emmet-vim
+
++ Javascript
+https://github.com/pangloss/vim-javascript.git
