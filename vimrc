@@ -59,7 +59,7 @@ if has("gui_running") && has("gui_win32")
 endif
 
 " Beautify on different FileTypes
-autocmd FileType javascript nnoremap <silent> <leader>u :call JsBeautify()<CR>
+autocmd FileType javascript nnoremap <silent> == <V>:call RangeJsBeautify()<CR><Esc>
 autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 
 " Swap go to first non-blank char with go to line beginning
@@ -272,6 +272,10 @@ set noswapfile
 
 " Set new directory for backup files
 set nobackup
+
+" Turn off bell
+set vb
+set t_vb=
 
 " Some Markdown settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
