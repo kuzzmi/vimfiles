@@ -48,7 +48,7 @@ https://github.com/digitaltoad/vim-jade.git
 
 + JavaScript syntax
 +vim-javascript-syntax
-+vim-javascript
+https://github.com/pangloss/vim-javascript
 
 + JS Beautify
 https://github.com/maksimr/vim-jsbeautify.git
