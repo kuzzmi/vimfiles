@@ -8,8 +8,9 @@ https://github.com/scrooloose/nerdtree.git
 https://github.com/junegunn/goyo.vim.git
 https://github.com/junegunn/limelight.vim.git
 
-+ Cool colorscheme
++ Cool colorschemes
 https://github.com/junegunn/seoul256.vim.git
+https://github.com/andrwb/vim-lapis256.git
 
 + Commenting stuff
 https://github.com/tomtom/tcomment_vim.git
@@ -77,3 +78,5 @@ https://github.com/mattn/emmet-vim
 
 + Javascript
 https://github.com/pangloss/vim-javascript.git
+
+

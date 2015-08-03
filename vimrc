@@ -70,8 +70,8 @@ nnoremap 0 ^
 let g:user_emmet_leader_key='<C-q>'
 
 " Toggle distraction modee
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
 let g:limelight_default_coefficient = 0.8
 nnoremap <silent> <leader>] :Goyo<CR>
 
@@ -251,7 +251,8 @@ call unite#custom#profile('default', 'context', {
 set t_Co=256
 
 let g:seoul256_background = 234
-colorscheme seoul256
+colorscheme lapis256
+hi CursorLine cterm=NONE
 " }}}
 " Folding {{{
 " =======
@@ -273,11 +274,7 @@ set noswapfile
 " Set new directory for backup files
 set nobackup
 
-<<<<<<< HEAD
-" Disable bell
-=======
 " Turn off bell
->>>>>>> 881d15c324f2368a1d4b000b2b668336be43a048
 set vb
 set t_vb=
 
