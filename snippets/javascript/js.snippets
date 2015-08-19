@@ -1,6 +1,5 @@
 # Functions
 
-# prototype
 snippet ins
 	console.log(require('util').inspect(${1}, { showHidden: false, depth: null }));
 	${0}
@@ -22,5 +21,26 @@ snippet exput
 
 snippet exdel 
 	${1:app}.delete('${2}', function(req, res) {
+
+snippet $sfn
+	$scope.${1:method} = function() {
+	    ${0}
+	};
+
+# setInterval function
+snippet sit
+	setInterval(function() {
+	    ${0}
+	}, ${1:10});
+
+# setTimeout function
+snippet sti
+	setTimeout(function() {
+	    ${0}
+	}, ${1:10});
+
+# map
+snippet amap
+	${1:array}.map(function(${2:element}) {
 		${0}
 	});
