@@ -16,7 +16,7 @@ https://github.com/andrwb/vim-lapis256.git
 https://github.com/tomtom/tcomment_vim.git
 
 + JavaScript lookup
-https://github.com/marijnh/tern_for_vim.git
++ https://github.com/marijnh/tern_for_vim.git
 
 + Some libraries
 https://github.com/tomtom/tlib_vim.git
@@ -79,4 +79,5 @@ https://github.com/mattn/emmet-vim
 + Javascript
 https://github.com/pangloss/vim-javascript.git
 
-
++ Handlebars
+https://github.com/mustache/vim-mustache-handlebars.git
