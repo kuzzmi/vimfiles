@@ -3,3 +3,26 @@
 # prototype
 snippet test
 	AAAAAq
+
+snippet $sfn
+	$scope.${1:method} = function() {
+	    ${0}
+	};
+
+# setInterval function
+snippet sit
+	setInterval(function() {
+	    ${0}
+	}, ${1:10});
+
+# setTimeout function
+snippet sti
+	setTimeout(function() {
+	    ${0}
+	}, ${1:10});
+
+# map
+snippet amap
+	${1:array}.map(function(${2:element}) {
+		${0}
+	});

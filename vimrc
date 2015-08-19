@@ -35,6 +35,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeCopyCmd= 'cp -r'
+set fillchars+=vert:\ 
 " }}}
 " Leader key {{{
 " ==========
@@ -233,12 +234,13 @@ nnoremap <F4> <Esc>ggVG"*y
 " Unite.vim {{{
 " =========
 "
-nnoremap <Space>/ :Unite grep:.<cr>
+nnoremap <leader>/ :Unite grep:.<cr>
 "/async
 nnoremap <C-p> :<C-u>Unite -start-insert file_rec:!<CR>
+nnoremap <leader>p :Unite buffer<CR>
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '\(\.bower_components\|\.node_modules\)')
-call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules/\|bower_components/')
+" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules/\|bower_components/')
 call unite#custom#profile('default', 'context', {
 \   'start_insert': 1,
 \   'winheight': 10
@@ -250,9 +252,12 @@ call unite#custom#profile('default', 'context', {
 " Enable 256 Colors
 set t_Co=256
 
-let g:seoul256_background = 234
-colorscheme lapis256
-hi CursorLine cterm=NONE
+if !empty($CONEMUBUILD)
+    colorscheme lapis256
+else
+    let g:seoul256_background = 234
+    colorscheme seoul256
+endif
 " }}}
 " Folding {{{
 " =======
@@ -305,28 +310,24 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Inconsolata-g\ for\ Powerline:h11
-    let g:airline_powerline_fonts = 1
-    " let g:airline_symbols = {}
-    " let g:airline_left_sep = "\u2b80"
-    " let g:airline_left_alt_sep = "\u2b81"
-    " let g:airline_right_sep = "\u2b82"
-    " let g:airline_right_alt_sep = "\u2b83"
-    " let g:airline_symbols.branch = "\u2b60"
-    " let g:airline_symbols.readonly = "\u2b64"
-    " let g:airline_symbols.linenr = "\u2b61"
+    set guifont=Consolas:h11
   endif
 else 
   " If using ConEmu
   if !empty($CONEMUBUILD)
     set term=pcansi
     set t_Co=256
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-  "   set bs=indent,eol,start
+
+    let g:airline_symbols = {}
+    let g:airline_left_sep = "►"
+    let g:airline_left_alt_sep = "►"
+    let g:airline_right_sep = "◄"
+    let g:airline_right_alt_sep = "◄"
+    let g:airline_symbols.branch = "b"
+    let g:airline_symbols.readonly = "[RO]"
+    let g:airline_symbols.linenr = "ln"
   endif
 endif
-
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
