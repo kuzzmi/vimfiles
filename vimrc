@@ -169,8 +169,8 @@ nnoremap : ;
 " Commenting blocks of code.
 nnoremap <leader>c gcc
 
-" Remap jj to Escape in Insert mode
-inoremap jj <Esc>
+" Remap jk to Escape in Insert mode
+inoremap jk <Esc>
 
 " Remove trailing spaces on F5
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -252,12 +252,12 @@ call unite#custom#profile('default', 'context', {
 " Enable 256 Colors
 set t_Co=256
 
-if !empty($CONEMUBUILD)
-    colorscheme lapis256
-else
-    let g:seoul256_background = 234
-    colorscheme seoul256
-endif
+let g:seoul256_background = 235
+colorscheme seoul256
+" if !empty($CONEMUBUILD)
+"     colorscheme lapis256
+" else
+" endif
 " }}}
 " Folding {{{
 " =======
@@ -278,10 +278,6 @@ set noswapfile
 
 " Set new directory for backup files
 set nobackup
-
-" Turn off bell
-set vb
-set t_vb=
 
 " Some Markdown settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
@@ -346,6 +342,7 @@ set backspace=2
 
 " Set 2 spaces for HTML
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType unite setlocal shiftwidth=2 tabstop=2
 
 " Convert tabs to spaces
 set expandtab
@@ -381,6 +378,9 @@ set hlsearch
 
 " Don't redraw when not needed
 set lazyredraw
+
+" Turn off bell
+set noerrorbells visualbell t_vb=
 
 " Autocompletion stuff...
 " set complete=.,w,b,u,U,t,i,d
