@@ -16,7 +16,7 @@ https://github.com/andrwb/vim-lapis256.git
 https://github.com/tomtom/tcomment_vim.git
 
 + JavaScript lookup
-https://github.com/marijnh/tern_for_vim.git
++ https://github.com/marijnh/tern_for_vim.git
 
 + Some libraries
 https://github.com/tomtom/tlib_vim.git
@@ -42,7 +42,7 @@ https://github.com/bling/vim-airline.git
 https://github.com/tpope/vim-fugitive.git
 
 + Autoreload Makrdown
-https://github.com/suan/vim-instant-markdown.git
++ https://github.com/suan/vim-instant-markdown.git
 
 + Jade hightlighting
 https://github.com/digitaltoad/vim-jade.git
@@ -79,4 +79,5 @@ https://github.com/mattn/emmet-vim
 + Javascript
 https://github.com/pangloss/vim-javascript.git
 
-
++ Todo Plugin
+https://github.com/vitalk/vim-simple-todo

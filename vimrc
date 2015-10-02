@@ -252,8 +252,8 @@ call unite#custom#profile('default', 'context', {
 " Enable 256 Colors
 set t_Co=256
 
-let g:seoul256_background = 235
-colorscheme seoul256
+" let g:seoul256_background = 235
+colorscheme Tomorrow-Night-Eighties
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -306,24 +306,24 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Consolas:h11
+    set guifont=Lucida\ Console:h9
   endif
 else 
   " If using ConEmu
   if !empty($CONEMUBUILD)
     set term=pcansi
     set t_Co=256
-
-    let g:airline_symbols = {}
-    let g:airline_left_sep = "►"
-    let g:airline_left_alt_sep = "►"
-    let g:airline_right_sep = "◄"
-    let g:airline_right_alt_sep = "◄"
-    let g:airline_symbols.branch = "b"
-    let g:airline_symbols.readonly = "[RO]"
-    let g:airline_symbols.linenr = "ln"
   endif
 endif
+
+let g:airline_symbols = {}
+let g:airline_left_sep = "►"
+let g:airline_left_alt_sep = "►"
+let g:airline_right_sep = "◄"
+let g:airline_right_alt_sep = "◄"
+let g:airline_symbols.branch = "b"
+let g:airline_symbols.readonly = "[RO]"
+let g:airline_symbols.linenr = "ln"
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
