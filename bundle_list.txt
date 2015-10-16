@@ -80,7 +80,10 @@ https://github.com/mattn/emmet-vim
 https://github.com/pangloss/vim-javascript.git
 
 + Todo Plugin
-https://github.com/vitalk/vim-simple-todo
++ https://github.com/vitalk/vim-simple-todo
 
 + Handlebars
 https://github.com/mustache/vim-mustache-handlebars.git
+
++ Material Theme
+https://github.com/jscappini/material.vim.git

@@ -234,17 +234,21 @@ nnoremap <F4> <Esc>ggVG"*y
 " Unite.vim {{{
 " =========
 "
-nnoremap <leader>/ :Unite grep:.<cr>
-"/async
-nnoremap <C-p> :<C-u>Unite -start-insert file_rec:!<CR>
-nnoremap <leader>p :Unite buffer<CR>
+let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '\(\.bower_components\|\.node_modules\)')
-" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules/\|bower_components/')
+" nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
 call unite#custom#profile('default', 'context', {
-\   'start_insert': 1,
 \   'winheight': 10
 \ })
+function! s:unite_settings()
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
 " }}}
 " Colors {{{
 " ======
@@ -306,7 +310,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Lucida\ Console:h9
+    set guifont=Lucida\ Console:h11
   endif
 else 
   " If using ConEmu
@@ -379,9 +383,6 @@ set hlsearch
 " Don't redraw when not needed
 set lazyredraw
 
-" Turn off bell
-set noerrorbells visualbell t_vb=
-
 " Autocompletion stuff...
 " set complete=.,w,b,u,U,t,i,d
 " set dictionary=./words/english
@@ -396,5 +397,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 " }}}
+
+" Turn off bell
+set noerrorbells visualbell t_vb=
 
 " vim:foldmethod=marker:foldlevel=0
