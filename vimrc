@@ -67,6 +67,25 @@ autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 nnoremap ^ 0
 nnoremap 0 ^
 
+" Navigation by logical lines
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+vnoremap j gj
+vnoremap gj j
+vnoremap k gk
+vnoremap gk k
+
+" Highlight and stay
+nnoremap * *N
+
+" Change current word
+nnoremap <M-1> ciw
+
+" After pasting select pasted text
+nnoremap p pV']
+
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
 
@@ -172,6 +191,10 @@ nnoremap <leader>c gcc
 " Remap jk to Escape in Insert mode
 inoremap jk <Esc>
 
+" Scroll buffers
+nnoremap <leader>1 :bprev<CR>
+nnoremap <leader>2 :bnext<CR>
+
 " Remove trailing spaces on F5
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -257,7 +280,7 @@ endfunction
 set t_Co=256
 
 " let g:seoul256_background = 235
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -310,7 +333,9 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Lucida\ Console:h11
+    " set guifont=Lucida\ Console:h11
+    set guifont=Anonymice\ Powerline:h11
+    set linespace=0
   endif
 else 
   " If using ConEmu
@@ -321,12 +346,12 @@ else
 endif
 
 let g:airline_symbols = {}
-let g:airline_left_sep = "►"
-let g:airline_left_alt_sep = "►"
-let g:airline_right_sep = "◄"
-let g:airline_right_alt_sep = "◄"
-let g:airline_symbols.branch = "b"
-let g:airline_symbols.readonly = "[RO]"
+let g:airline_left_sep = ""
+let g:airline_left_alt_sep = ""
+let g:airline_right_sep = ""
+let g:airline_right_alt_sep = ""
+let g:airline_symbols.branch = ""
+let g:airline_symbols.readonly = ""
 let g:airline_symbols.linenr = "ln"
 
 " Automatic reloading of .vimrc
