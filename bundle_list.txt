@@ -42,7 +42,7 @@ https://github.com/bling/vim-airline.git
 https://github.com/tpope/vim-fugitive.git
 
 + Autoreload Makrdown
-https://github.com/suan/vim-instant-markdown.git
++ https://github.com/suan/vim-instant-markdown.git
 
 + Jade hightlighting
 https://github.com/digitaltoad/vim-jade.git
@@ -79,8 +79,14 @@ https://github.com/mattn/emmet-vim
 + Javascript
 https://github.com/pangloss/vim-javascript.git
 
++ Todo Plugin
++ https://github.com/vitalk/vim-simple-todo
+
 + Handlebars
 https://github.com/mustache/vim-mustache-handlebars.git
 
 + Table mode
 https://github.com/dhruvasagar/vim-table-mode
+
++ Material Theme
+https://github.com/jscappini/material.vim.git

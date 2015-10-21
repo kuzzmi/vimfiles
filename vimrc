@@ -67,6 +67,25 @@ autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 nnoremap ^ 0
 nnoremap 0 ^
 
+" Navigation by logical lines
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+vnoremap j gj
+vnoremap gj j
+vnoremap k gk
+vnoremap gk k
+
+" Highlight and stay
+nnoremap * *N
+
+" Change current word
+nnoremap <M-1> ciw
+
+" After pasting select pasted text
+nnoremap p pV']
+
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
 
@@ -172,6 +191,10 @@ nnoremap <leader>c gcc
 " Remap jk to Escape in Insert mode
 inoremap jk <Esc>
 
+" Scroll buffers
+nnoremap <leader>1 :bprev<CR>
+nnoremap <leader>2 :bnext<CR>
+
 " Remove trailing spaces on F5
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -234,17 +257,21 @@ nnoremap <F4> <Esc>ggVG"*y
 " Unite.vim {{{
 " =========
 "
-nnoremap <leader>/ :Unite grep:.<cr>
-"/async
-nnoremap <C-p> :<C-u>Unite -start-insert file_rec:!<CR>
-nnoremap <leader>p :Unite buffer<CR>
+let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '\(\.bower_components\|\.node_modules\)')
-" call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules/\|bower_components/')
+" nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
 call unite#custom#profile('default', 'context', {
-\   'start_insert': 1,
 \   'winheight': 10
 \ })
+function! s:unite_settings()
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
 " }}}
 " Colors {{{
 " ======
@@ -252,8 +279,8 @@ call unite#custom#profile('default', 'context', {
 " Enable 256 Colors
 set t_Co=256
 
-let g:seoul256_background = 235
-colorscheme seoul256
+" let g:seoul256_background = 235
+colorscheme Tomorrow
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -306,24 +333,26 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Consolas:h11
+    " set guifont=Lucida\ Console:h11
+    set guifont=Anonymice\ Powerline:h11
+    set linespace=0
   endif
 else 
   " If using ConEmu
   if !empty($CONEMUBUILD)
     set term=pcansi
     set t_Co=256
-
-    let g:airline_symbols = {}
-    let g:airline_left_sep = "►"
-    let g:airline_left_alt_sep = "►"
-    let g:airline_right_sep = "◄"
-    let g:airline_right_alt_sep = "◄"
-    let g:airline_symbols.branch = "b"
-    let g:airline_symbols.readonly = "[RO]"
-    let g:airline_symbols.linenr = "ln"
   endif
 endif
+
+let g:airline_symbols = {}
+let g:airline_left_sep = ""
+let g:airline_left_alt_sep = ""
+let g:airline_right_sep = ""
+let g:airline_right_alt_sep = ""
+let g:airline_symbols.branch = ""
+let g:airline_symbols.readonly = ""
+let g:airline_symbols.linenr = "ln"
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost vimrc source %
@@ -379,9 +408,6 @@ set hlsearch
 " Don't redraw when not needed
 set lazyredraw
 
-" Turn off bell
-set noerrorbells visualbell t_vb=
-
 " Autocompletion stuff...
 " set complete=.,w,b,u,U,t,i,d
 " set dictionary=./words/english
@@ -396,5 +422,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 " }}}
+
+" Turn off bell
+set noerrorbells visualbell t_vb=
 
 " vim:foldmethod=marker:foldlevel=0
