@@ -409,10 +409,9 @@ set hlsearch
 set lazyredraw
 
 " Autocompletion stuff...
-" set complete=.,w,b,u,U,t,i,d
-" set dictionary=./words/english
-" set dictionary+=./words/russian
+set complete=.,w,b,u,U,t,i,d
 " set complete+=k
+" set dictionary=./words/english,./words/russian
 " }}}
 " Syntastic {{{
 " =========
@@ -425,5 +424,16 @@ let g:syntastic_auto_loc_list = 1
 
 " Turn off bell
 set noerrorbells visualbell t_vb=
+
+function! Quotereturn()
+  let before=strpart(getline(line(".")), 0, col(".")-1)
+  "let after=strpart(getline(line(".")), col("."))
+  if(before =~ '^\([^'']*"\([^''\\]\|\\.\)*''\)*[^'']*''\([^''\\]\|\\.\)*$')
+    return "\' +\'\<Left>\<CR>\<Right>"
+  else
+    return "\<CR>"
+  endif
+endf
+inoremap <CR> <C-R>=Quotereturn()<CR>
 
 " vim:foldmethod=marker:foldlevel=0

@@ -87,3 +87,6 @@ https://github.com/mustache/vim-mustache-handlebars.git
 
 + Material Theme
 https://github.com/jscappini/material.vim.git
+
++ Markdown folding
+https://github.com/nelstrom/vim-markdown-folding.git
