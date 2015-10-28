@@ -85,6 +85,9 @@ https://github.com/pangloss/vim-javascript.git
 + Handlebars
 https://github.com/mustache/vim-mustache-handlebars.git
 
++ Table mode
+https://github.com/dhruvasagar/vim-table-mode
+
 + Material Theme
 https://github.com/jscappini/material.vim.git
 
