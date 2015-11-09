@@ -90,3 +90,6 @@ https://github.com/dhruvasagar/vim-table-mode
 
 + Material Theme
 https://github.com/jscappini/material.vim.git
+
++ Tomorrow theme
+https://github.com/chriskempson/vim-tomorrow-theme.git
