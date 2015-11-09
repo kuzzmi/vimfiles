@@ -93,6 +93,7 @@ let g:user_emmet_leader_key='<C-q>'
 " autocmd! User GoyoEnter Limelight
 " autocmd! User GoyoLeave Limelight!
 let g:limelight_default_coefficient = 0.8
+let g:goyo_width = 120
 nnoremap <silent> <leader>] :Goyo<CR>
 
 " Highlight last inserted text
@@ -280,7 +281,7 @@ endfunction
 set t_Co=256
 
 " let g:seoul256_background = 235
-colorscheme Tomorrow
+colorscheme shades-of-teal
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -334,7 +335,8 @@ if has("gui_running")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
     " set guifont=Lucida\ Console:h11
-    set guifont=Anonymice\ Powerline:h11
+    " set guifont=Anonymice\ Powerline:h11
+    set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h11
     set linespace=0
   endif
 else 
@@ -413,6 +415,41 @@ set complete=.,w,b,u,U,t,i,d
 " set complete+=k
 " set dictionary=./words/english,./words/russian
 " }}}
+" Neocomplete {{{
+" =========
+"
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#use_vimproc = 0
+" }}}
+" Vim-go {{{
+" =========
+"
+let g:go_disable_autoinstall = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+" }}}
 " Syntastic {{{
 " =========
 "
@@ -423,7 +460,7 @@ let g:syntastic_auto_loc_list = 1
 " }}}
 
 " Turn off bell
-set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set noerrorbells visualbell t_vb=
 
 function! Quotereturn()
   let before=strpart(getline(line(".")), 0, col(".")-1)
