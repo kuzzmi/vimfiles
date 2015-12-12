@@ -279,8 +279,9 @@ endfunction
 " Enable 256 Colors
 set t_Co=256
 
-" let g:seoul256_background = 235
-colorscheme Tomorrow
+let g:seoul256_background = 235
+" colorscheme shades-of-teal
+colorscheme seoul256
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -334,7 +335,8 @@ if has("gui_running")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
     " set guifont=Lucida\ Console:h11
-    set guifont=Anonymice\ Powerline:h11
+    " set guifont=Anonymice\ Powerline:h11
+    set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h11
     set linespace=0
   endif
 else 

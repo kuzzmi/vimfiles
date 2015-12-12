@@ -90,3 +90,9 @@ https://github.com/dhruvasagar/vim-table-mode
 
 + Material Theme
 https://github.com/jscappini/material.vim.git
+
++ Shades of teal
+https://github.com/kristiandupont/shades-of-teal.git
+
++ ES6
+https://github.com/isRuslan/vim-es6.git
