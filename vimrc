@@ -281,8 +281,12 @@ endfunction
 set t_Co=256
 
 " let g:seoul256_background = 235
+<<<<<<< HEAD
 " colorscheme shades-of-teal
 colorscheme seoul256
+=======
+colorscheme shades-of-teal
+>>>>>>> d405b80259252967e1d10dd33337d0be36713b87
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -428,9 +432,15 @@ let g:neocomplete#enable_smart_case = 1
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
+<<<<<<< HEAD
   " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
   " For no inserting <CR> key.
   return pumvisible() ? "\<C-y>" : "\<CR>"
+=======
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+>>>>>>> d405b80259252967e1d10dd33337d0be36713b87
 endfunction
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
