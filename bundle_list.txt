@@ -93,3 +93,9 @@ https://github.com/jscappini/material.vim.git
 
 + Markdown folding
 https://github.com/nelstrom/vim-markdown-folding.git
+
++ Go
+https://github.com/fatih/vim-go.git
+
++ neocomplete
+https://github.com/Shougo/neocomplete.vim.git
