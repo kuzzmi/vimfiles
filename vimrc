@@ -84,7 +84,7 @@ nnoremap * *N
 nnoremap <M-1> ciw
 
 " After pasting select pasted text
-nnoremap p pV']
+" nnoremap p pV']
 
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
@@ -429,9 +429,9 @@ let g:neocomplete#enable_smart_case = 1
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
   " For no inserting <CR> key.
-  return pumvisible() ? "\<C-y>" : "\<CR>"
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
