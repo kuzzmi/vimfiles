@@ -15,8 +15,8 @@ SKIPPED = 0
 GOOD = 0
 BAD = 0
 
-print "Trying to fetch all your vim modules..."
-print ""
+print( "Trying to fetch all your vim modules..." )
+print( "" )
 
 for line in BUNDLE_LIST:
 
@@ -36,18 +36,18 @@ for line in BUNDLE_LIST:
 
         if os.path.exists(dest):
             SKIPPED += 1
-            print "{0} already exists".format(folder)
+            print ( "{0} already exists".format(folder) )
             continue
 
         else:
             try:
                 Repo.clone_from(line, dest)
-                print folder + " cloned"
+                print ( folder + " cloned" )
                 GOOD += 1
             except exc.GitCommandError as error:
-                print "{0} failed. Repo: {1}.".format(folder, line)
+                print ( "{0} failed. Repo: {1}.".format(folder, line) )
                 BAD += 1
 
-print ""
-print "Total: {0}. Skipped {1} repos, {2} fetched, {3} failed" \
+print ( "" )
+print ( "Total: {0}. Skipped {1} repos, {2} fetched, {3} failed" ) \
     .format(TOTAL, SKIPPED, GOOD, BAD)

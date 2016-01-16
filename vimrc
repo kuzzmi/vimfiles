@@ -282,7 +282,7 @@ set t_Co=256
 
 " let g:seoul256_background = 235
 " colorscheme shades-of-teal
-colorscheme seoul256
+colorscheme codeschool
 " if !empty($CONEMUBUILD)
 "     colorscheme lapis256
 " else
@@ -337,7 +337,8 @@ if has("gui_running")
   elseif has("gui_win32")
     " set guifont=Lucida\ Console:h11
     " set guifont=Anonymice\ Powerline:h11
-    set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline:h11
+    " set guifont=Inconsolata-g\ for\ Powerline:h13
+    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
     set linespace=0
   endif
 else 
@@ -440,6 +441,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#use_vimproc = 0
+
 " }}}
 " Vim-go {{{
 " =========
