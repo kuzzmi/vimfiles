@@ -99,3 +99,6 @@ https://github.com/fatih/vim-go.git
 
 + neocomplete
 https://github.com/Shougo/neocomplete.vim.git
+
++ VimTex
+https://github.com/lervag/vimtex.git
