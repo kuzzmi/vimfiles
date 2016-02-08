@@ -21,8 +21,10 @@ snippet exput
 
 snippet exdel 
 	${1:app}.delete('${2}', function(req, res) {
+		${0}
+	});
 
-snippet $sfn
+snippet $fn
 	$scope.${1:method} = function() {
 	    ${0}
 	};
@@ -59,3 +61,26 @@ snippet varo
 	var ${1:variable} = {
 		${0}
 	};
+
+# Angular.js
+snippet ngdir
+	directive('${1:directive}', ['${2}', function(${2}) {
+		// Runs during compile
+		return {
+			// name: '',
+			// priority: 1,
+			// terminal: true,
+			// scope: {}, // {} = isolate, true = child, false/undefined = no change
+			// controller: function($scope, $element, $attrs, $transclude) {},
+			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+			// restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+			// template: '',
+			// templateUrl: '',
+			// replace: true,
+			// transclude: true,
+			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+			link: function($scope, element, attrs, controller) {
+				${0}
+			}
+		};
+	}]);

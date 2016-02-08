@@ -110,4 +110,7 @@ https://github.com/Shougo/neocomplete.vim.git
 https://github.com/lervag/vimtex.git
 
 + Monochrome theme
-https://github.com/fxn/vim-monochrome.git
++ https://github.com/fxn/vim-monochrome.git
+
++ Presentation making tool
+https://github.com/sotte/presenting.vim

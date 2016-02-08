@@ -93,7 +93,7 @@ let g:user_emmet_leader_key='<C-q>'
 " autocmd! User GoyoEnter Limelight
 " autocmd! User GoyoLeave Limelight!
 let g:limelight_default_coefficient = 0.8
-let g:goyo_width = 120
+let g:goyo_width = 80
 nnoremap <silent> <leader>] :Goyo<CR>
 
 " Highlight last inserted text
@@ -128,6 +128,9 @@ vnoremap <leader>d y<Esc>:%s:<C-R>":
 
 " Append to end of file
 nnoremap <leader>a Go
+
+" Open a presentation with Goyo
+nnoremap <silent> <leader>p :PresentingStart<CR>:Goyo<CR>
 
 " Git commands
 nnoremap <F10> :Gstatus<CR>
@@ -338,7 +341,7 @@ if has("gui_running")
     " set guifont=Lucida\ Console:h11
     " set guifont=Anonymice\ Powerline:h11
     " set guifont=Inconsolata-g\ for\ Powerline:h13
-    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
+    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
     set linespace=0
   endif
 else 
