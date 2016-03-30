@@ -1,5 +1,5 @@
 + Autopopup autocompletion
-https://github.com/vim-scripts/autocomplpop.git
++ https://github.com/vim-scripts/autocomplpop.git
 
 + Nerdtree
 https://github.com/scrooloose/nerdtree.git
@@ -46,10 +46,6 @@ https://github.com/tpope/vim-fugitive.git
 
 + Jade hightlighting
 https://github.com/digitaltoad/vim-jade.git
-
-+ JavaScript syntax
-+vim-javascript-syntax
-https://github.com/pangloss/vim-javascript
 
 + JS Beautify
 https://github.com/maksimr/vim-jsbeautify.git
@@ -114,3 +110,9 @@ https://github.com/lervag/vimtex.git
 
 + Presentation making tool
 https://github.com/sotte/presenting.vim
+
++ Silver Searcher
+https://github.com/rking/ag.vim
+
++ Per project vimrc
+https://github.com/krisajenkins/vim-projectlocal.git

@@ -14,6 +14,23 @@ filetype plugin indent on
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 " }}}
+" FileTypes {{{
+" ============
+"
+" Filetype specific omnifuncs
+autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"
+" Some Markdown settings
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd FileType markdown setlocal linebreak wrap
+
+" Set 2 spaces for HTML
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType handlebars setlocal shiftwidth=2 tabstop=2
+autocmd FileType unite setlocal shiftwidth=2 tabstop=2
+" }}}
 " Line numbers {{{
 " ============
 "
@@ -35,7 +52,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeCopyCmd= 'cp -r'
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 " }}}
 " Leader key {{{
 " ==========
@@ -47,8 +64,6 @@ let mapleader = " "
 " Mappings {{{
 " ========
 "
-" Open netrw
-" nnoremap <leader>f :Explore<CR>
 " Open NERDTree
 nnoremap <leader>f :NERDTreeToggle<CR>
 
@@ -60,7 +75,8 @@ if has("gui_running") && has("gui_win32")
 endif
 
 " Beautify on different FileTypes
-autocmd FileType javascript nnoremap <silent> == <V>:call RangeJsBeautify()<CR><Esc>
+autocmd FileType javascript vnoremap <silent> = <V>:call RangeJsBeautify()<CR><Esc>
+autocmd FileType javascript nnoremap <silent> == <V>:call JsBeautify()<CR><Esc>
 autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 
 " Swap go to first non-blank char with go to line beginning
@@ -205,65 +221,13 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " Copy whole file to clipboard
 nnoremap <F4> <Esc>ggVG"*y
 " }}}
-" " Dvorak mappings {{{
-" " ===============
-" inoremap a a
-" inoremap b x
-" inoremap c j
-" inoremap d e
-" inoremap e .
-" inoremap f u
-" inoremap g i
-" inoremap h d
-" inoremap i c
-" inoremap j h
-" inoremap k t
-" inoremap l n
-" inoremap m m
-" inoremap n b
-" inoremap o r
-" inoremap p l
-" inoremap q '
-" inoremap r p
-" inoremap s o
-" inoremap t y
-" inoremap u g
-" inoremap v k
-" inoremap w ,
-" inoremap x q
-" inoremap y f
-" inoremap z ;
-" inoremap ; s
-" inoremap ' -
-" inoremap " _
-" inoremap , w
-" inoremap . v
-" inoremap / z
-" inoremap A A
-" inoremap B X
-" inoremap C J
-" inoremap D E
-" inoremap E >
-" inoremap F U
-" inoremap G I
-" inoremap H D
-" inoremap I C
-" inoremap J H
-" inoremap K T
-" inoremap L N
-" inoremap M M
-" inoremap N B
-" inoremap O R
-" inoremap P L
-" inoremap Q "
-" inoremap R P
-" " }}}
 " Unite.vim {{{
 " =========
 "
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+nnoremap <leader>t :<C-u>UniteWithCurrentDir -auto-resize -buffer-name=files -start-insert file_rec/git<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
 " Custom mappings for the unite buffer
@@ -273,8 +237,8 @@ call unite#custom#profile('default', 'context', {
 \ })
 function! s:unite_settings()
     " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
 endfunction
 " }}}
 " Colors {{{
@@ -283,13 +247,10 @@ endfunction
 " Enable 256 Colors
 set t_Co=256
 
-" let g:seoul256_background = 235
-" colorscheme shades-of-teal
-colorscheme codeschool
-" if !empty($CONEMUBUILD)
-"     colorscheme lapis256
-" else
-" endif
+colorscheme bubblegum-256-dark
+if !empty($CONEMUBUILD)
+    colorscheme Tomorrow-Night-Eighties
+endif
 " }}}
 " Folding {{{
 " =======
@@ -301,125 +262,6 @@ set foldmethod=indent
 " au FileType javascript call JavaScriptFold()
 
 " }}}
-" Misc {{{
-" ====
-"
-
-" Disable swap files from being created
-set noswapfile
-
-" Set new directory for backup files
-set nobackup
-
-" Some Markdown settings
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd FileType markdown setlocal linebreak wrap
-
-" Remove widget stuff from window in gVim
-set guioptions-=m
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
-
-" Use modelines
-set modelines=1
-
-" Vim-airline customization
-let g:airline_section_y = '%{strftime("%D %T")}'
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="tomorrow"
-set encoding=utf-8
-
-" Font settings
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    " set guifont=Lucida\ Console:h11
-    " set guifont=Anonymice\ Powerline:h11
-    " set guifont=Inconsolata-g\ for\ Powerline:h13
-    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
-    set linespace=0
-  endif
-else 
-  " If using ConEmu
-  if !empty($CONEMUBUILD)
-    set term=pcansi
-    set t_Co=256
-  endif
-endif
-
-let g:airline_symbols = {}
-let g:airline_left_sep = ""
-let g:airline_left_alt_sep = ""
-let g:airline_right_sep = ""
-let g:airline_right_alt_sep = ""
-let g:airline_symbols.branch = ""
-let g:airline_symbols.readonly = ""
-let g:airline_symbols.linenr = "ln"
-
-" Automatic reloading of .vimrc
-autocmd! bufwritepost vimrc source %
-
-" Start scrolling 7 lines before edge
-set so=7
-
-" Tabs are 4 chars wide
-set tabstop=4
-
-" Indentation size is 4 characters
-set shiftwidth=4
-
-" Make backspace work like most other apps
-set backspace=2
-
-" Set 2 spaces for HTML
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType unite setlocal shiftwidth=2 tabstop=2
-
-" Convert tabs to spaces
-set expandtab
-set smarttab
-
-" Be single lined
-set nowrap
-
-" Necesary for lots of cool vim things
-set nocompatible
-
-" This shows what you are typing as a command
-set showcmd
-
-" Who doesn't like autoindent?
-set autoindent
-
-" Cool tab completion stuff
-set wildmenu
-set wildmode=list:longest,full
-
-" Ignoring case is a fun trick
-set ignorecase
-
-" And so is Artificial Intellegence!
-set smartcase
-
-" Incremental searching is sexy
-set incsearch
-
-" Highlight things that we find with the search
-set hlsearch
-
-" Don't redraw when not needed
-set lazyredraw
-
-" Autocompletion stuff...
-set complete=.,w,b,u,U,t,i,d
-" set complete+=k
-" set dictionary=./words/english,./words/russian
-" }}}
 " Neocomplete {{{
 " =========
 "
@@ -428,6 +270,8 @@ let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
+" Trigger after 3 chars
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -464,19 +308,142 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 " }}}
+" Vim-airline {{{
+let g:airline_section_y = '%{strftime("%D %T")}'
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="tomorrow"
+set encoding=utf-8
+
+" let g:airline_symbols = {}
+" let g:airline_left_sep = ""
+" let g:airline_left_alt_sep = ""
+" let g:airline_right_sep = ""
+" let g:airline_right_alt_sep = ""
+" let g:airline_symbols.branch = ""
+" let g:airline_symbols.readonly = ""
+" let g:airline_symbols.linenr = "ln"
+let g:airline_symbols = {}
+let g:airline_left_sep = ">"
+let g:airline_left_alt_sep = ">"
+let g:airline_right_sep = "<"
+let g:airline_right_alt_sep = "<"
+let g:airline_symbols.branch = "Ч"
+let g:airline_symbols.readonly = "ro"
+let g:airline_symbols.linenr = "ln"
+
+" }}}
+" Font settings {{{
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    " set guifont=Meslo\ LG\ S\ for\ Powerline:h12
+    " set guifont=Sauce\ Code\ Powerline:h12
+    " set guifont=Lucida\ Console:h15
+    set guifont=Consolas:h14
+    " set guifont=Anonymice\ Powerline:h10
+    set renderoptions=type:directx,
+        \gamma:1.8,contrast:0.7,geom:1,
+        \renmode:5,taamode:1,level:0.7
+    " set guifont=Inconsolata-g\ for\ Powerline:h13
+    " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
+    " set linespace=0
+  endif
+else
+  " If using ConEmu
+  if !empty($CONEMUBUILD)
+    set term=pcansi
+    set t_Co=256
+  endif
+endif
+" }}}
+" Misc {{{
+" ====
+"
+
+" Disable swap files from being created
+set noswapfile
+
+" Set new directory for backup files
+set nobackup
+
+" Remove widget stuff from window in gVim
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+
+" Use modelines
+set modelines=1
+
+" Automatic reloading of .vimrc
+" autocmd! bufwritepost vimrc source %
+
+" Start scrolling 7 lines before edge
+set so=7
+
+" Tabs are 4 chars wide
+set tabstop=4
+
+" Indentation size is 4 characters
+set shiftwidth=4
+
+" Make backspace work like most other apps
+set backspace=2
+
+
+" Convert tabs to spaces
+set expandtab
+set smarttab
+
+" Be single lined
+set nowrap
+
+" Necesary for lots of cool vim things
+set nocompatible
+
+" This shows what you are typing as a command
+set showcmd
+
+" Who doesn't like autoindent?
+set autoindent
+
+" Cool tab completion stuff
+set wildmenu
+set wildmode=list:longest,full
+
+" Ignoring case is a fun trick
+set ignorecase
+
+" And so is Artificial Intellegence!
+set smartcase
+
+" Incremental searching is sexy
+set incsearch
+
+" Highlight things that we find with the search
+set hlsearch
+
+" Don't redraw when not needed
+set lazyredraw
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" Autocompletion stuff...
+" set complete=.,w,b,u,U,t,i,d
+" set complete+=k
+" set dictionary=./words/english,./words/russian
 
 " Turn off bell
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
 
-" function! Quotereturn()
-"   let before=strpart(getline(line(".")), 0, col(".")-1)
-"   "let after=strpart(getline(line(".")), col("."))
-"   if(before =~ '^\([^'']*"\([^''\\]\|\\.\)*''\)*[^'']*''\([^''\\]\|\\.\)*$')
-"     return "\' +\'\<Left>\<CR>\<Right>"
-"   else
-"     return "\<CR>"
-"   endif
-" endf
-" inoremap <CR> <C-R>=Quotereturn()<CR>
+" Per Project configurations
+set exrc
+set secure
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
