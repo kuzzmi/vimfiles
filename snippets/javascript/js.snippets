@@ -1,51 +1,78 @@
 # Functions
 
+snippet =req 
+	var ${1:package} = require('${1}');
+snippet req 
+	require('${1}');
 snippet ins
 	console.log(require('util').inspect(${1}, { showHidden: false, depth: null }));
 	${0}
-
 snippet exget 
 	${1:app}.get('${2}', function(req, res) {
 		${0}
 	});
-
 snippet expost 
 	${1:app}.post('${2}', function(req, res) {
 		${0}
 	});
-
 snippet exput 
 	${1:app}.put('${2}', function(req, res) {
 		${0}
 	});
-
 snippet exdel 
 	${1:app}.delete('${2}', function(req, res) {
-
-snippet $sfn
+		${0}
+	});
+snippet $fn
 	$scope.${1:method} = function() {
 	    ${0}
 	};
-
 snippet nf
 	var ${1:f} = function(${2}) {
 		${0}
 	};
-
 # setInterval function
 snippet sit
 	setInterval(function() {
 	    ${0}
 	}, ${1:10});
-
 # setTimeout function
 snippet sti
 	setTimeout(function() {
 	    ${0}
 	}, ${1:10});
-
 # map
 snippet amap
 	${1:array}.map(function(${2:element}) {
 		${0}
 	});
+snippet /*
+	/* 
+	 * ${0} 
+	 */
+snippet varo
+	var ${1:variable} = {
+		${0}
+	};
+# Angular.js
+snippet ngdir
+	directive('${1:directive}', ['${2}', function(${2}) {
+		// Runs during compile
+		return {
+			// name: '',
+			// priority: 1,
+			// terminal: true,
+			// scope: {}, // {} = isolate, true = child, false/undefined = no change
+			// controller: function($scope, $element, $attrs, $transclude) {},
+			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+			// restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+			// template: '',
+			// templateUrl: '',
+			// replace: true,
+			// transclude: true,
+			// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+			link: function($scope, element, attrs, controller) {
+				${0}
+			}
+		};
+	}]);
