@@ -37,6 +37,7 @@ https://github.com/MarcWeber/vim-addon-mw-utils.git
 
 + Vim Airline
 https://github.com/bling/vim-airline.git
+https://github.com/vim-airline/vim-airline-themes.git
 
 + Git plugin
 https://github.com/tpope/vim-fugitive.git
@@ -119,3 +120,6 @@ https://github.com/rking/ag.vim
 
 + Per project vimrc
 https://github.com/krisajenkins/vim-projectlocal.git
+
++ Bubblegum colorscheme
+https://github.com/baskerville/bubblegum.git
