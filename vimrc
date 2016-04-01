@@ -52,7 +52,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let g:NERDTreeCopyCmd= 'cp -r'
-set fillchars+=vert:\
+" set fillchars+=vert:\|
 " }}}
 " Leader key {{{
 " ==========
@@ -247,10 +247,12 @@ endfunction
 " Enable 256 Colors
 set t_Co=256
 
-colorscheme bubblegum-256-dark
-if !empty($CONEMUBUILD)
-    colorscheme Tomorrow-Night-Eighties
-endif
+colorscheme Tomorrow-Night
+" In case of using ConEmu
+" if !empty($CONEMUBUILD)
+"     colorscheme Tomorrow-Night-Eighties
+" endif
+
 " }}}
 " Folding {{{
 " =======
@@ -430,8 +432,14 @@ set hlsearch
 " Don't redraw when not needed
 set lazyredraw
 
+" Highlighting trail spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+" Displaying spaces as dots and EOL as ¬
+set listchars=space:·,tab:▸\ ,eol:¬
+set list!
+highlight SpecialKey guifg=#444444
 
 " Autocompletion stuff...
 " set complete=.,w,b,u,U,t,i,d
