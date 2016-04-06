@@ -1,14 +1,19 @@
 # Functions
 
-<<<<<<< HEAD
+snippet rcl
+	var ${1:Component} = React.createClass({
+		render: function() {
+			return (
+				${0}
+			);
+		}
+	});
 snippet =req 
-	var ${1:package} = require('${1}');
+	var ${1:package} = require('${0}');
 snippet req 
 	require('${1}');
-=======
 snippet me
 	module.exports
->>>>>>> Updates 2
 snippet ins
 	console.log(require('util').inspect(${1}, { showHidden: false, depth: null }));
 	${0}
@@ -26,13 +31,9 @@ snippet exput
 	});
 snippet exdel 
 	${1:app}.delete('${2}', function(req, res) {
-<<<<<<< HEAD
 		${0}
 	});
-snippet $fn
-=======
 snippet $sfn
->>>>>>> Updates 2
 	$scope.${1:method} = function() {
 	    ${0}
 	};
