@@ -248,7 +248,7 @@ endfunction
 set t_Co=256
 
 " colorscheme Tomorrow-Night
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow
 " In case of using ConEmu
 " if !empty($CONEMUBUILD)
     " colorscheme Tomorrow-Night-Eighties
@@ -310,6 +310,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
 " }}}
 " Vim-airline {{{
 let g:airline_section_y = '%{strftime("%D %T")}'
@@ -434,13 +435,13 @@ set hlsearch
 set lazyredraw
 
 " Highlighting trail spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermfg=red guifg=red
+" ctermfg=white guifg=white
 match ExtraWhitespace /\s\+$/
 
 " Displaying spaces as dots and EOL as ¬
-set listchars=space:·,tab:▸\ ,eol:¬
+set listchars=space:·,tab:▸\ ,eol:¬,trail:♥
 set list!
-highlight SpecialKey guifg=#444444
 
 " Autocompletion stuff...
 " set complete=.,w,b,u,U,t,i,d

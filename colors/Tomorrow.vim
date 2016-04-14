@@ -7,6 +7,7 @@
 let s:foreground = "4d4d4c"
 let s:background = "ffffff"
 let s:selection = "d6d6d6"
+let s:almost = "dddddd"
 let s:line = "efefef"
 let s:comment = "8e908c"
 let s:red = "c82829"
@@ -236,7 +237,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Normal", s:foreground, s:background, "")
 	highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 	call <SID>X("NonText", s:selection, "", "")
-	call <SID>X("SpecialKey", s:selection, "", "")
+	call <SID>X("SpecialKey", s:almost, "", "")
 	call <SID>X("Search", s:foreground, s:yellow, "")
 	call <SID>X("TabLine", s:window, s:foreground, "reverse")
 	call <SID>X("TabLineFill", s:window, s:foreground, "reverse")
