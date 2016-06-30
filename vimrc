@@ -49,10 +49,43 @@ autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 " let g:netrw_liststyle = 3
 " let g:netrw_keepdir = 0
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" NERDTree open if VIM's empty
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" let g:NERDTreeDirArrowExpandable = ' '
+" let g:NERDTreeDirArrowCollapsible = ' '
 let g:NERDTreeCopyCmd= 'cp -r'
-" set fillchars+=vert:\|
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guifg='. a:guifg
+exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'white', 'none', '#FF896A', '#151515')
+call NERDTreeHighlightFile('md', 'white', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'white', 'none', '#FF896A', '#151515')
+call NERDTreeHighlightFile('config', 'white', 'none', '#FF896A', '#151515')
+call NERDTreeHighlightFile('conf', 'white', 'none', '#FF896A', '#151515')
+call NERDTreeHighlightFile('html', 'cyan', 'none', '#FF896A', '#151515')
+
+call NERDTreeHighlightFile('styl', 'cyan', 'none', '#00C4FF', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', '#00C4FF', '#151515')
+call NERDTreeHighlightFile('scss', 'cyan', 'none', '#00C4FF', '#151515')
+call NERDTreeHighlightFile('sass', 'cyan', 'none', '#00C4FF', '#151515')
+
+call NERDTreeHighlightFile('coffee', 'Red', 'none', '#FF896A', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#FF896A', '#151515')
+call NERDTreeHighlightFile('json', 'Red', 'none', '#FF896A', '#151515')
+
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+set fillchars+=vert:\|
 " }}}
 " Leader key {{{
 " ==========
@@ -228,12 +261,15 @@ let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 nnoremap <leader>t :<C-u>UniteWithCurrentDir -auto-resize -buffer-name=files -start-insert file_rec/git<cr>
+nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
+" ignore node_modules and bower_components
+call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/')
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
 call unite#custom#profile('default', 'context', {
-\   'winheight': 10
+\   'winheight': 7
 \ })
 function! s:unite_settings()
     " Enable navigation with control-j and control-k in insert mode
@@ -248,7 +284,9 @@ endfunction
 set t_Co=256
 
 " colorscheme Tomorrow-Night
-colorscheme Tomorrow
+" colorscheme Tomorrow
+colorscheme bubblegum-256-dark
+" colorscheme Tomorrow-Night-Eighties
 " In case of using ConEmu
 " if !empty($CONEMUBUILD)
     " colorscheme Tomorrow-Night-Eighties
@@ -306,35 +344,58 @@ let g:go_highlight_build_constraints = 1
 " Syntastic {{{
 " =========
 "
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_error_symbol = '✖'
+let g:syntastic_style_error_symbol = '☠'
+let g:syntastic_warning_symbol = '☸'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 " }}}
 " Vim-airline {{{
 let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="tomorrow"
+let g:airline_theme="bubblegum"
+" let g:airline_theme="light"
 set encoding=utf-8
 
-" let g:airline_symbols = {}
-" let g:airline_left_sep = ""
-" let g:airline_left_alt_sep = ""
-" let g:airline_right_sep = ""
-" let g:airline_right_alt_sep = ""
-" let g:airline_symbols.branch = ""
-" let g:airline_symbols.readonly = ""
-" let g:airline_symbols.linenr = "ln"
+" 
 let g:airline_symbols = {}
-let g:airline_left_sep = ">"
-let g:airline_left_alt_sep = ">"
-let g:airline_right_sep = "<"
-let g:airline_right_alt_sep = "<"
-let g:airline_symbols.branch = "Ч"
-let g:airline_symbols.readonly = "ro"
-let g:airline_symbols.linenr = "ln"
+let g:airline_left_sep = ""
+let g:airline_left_alt_sep = ""
+let g:airline_right_sep = ""
+let g:airline_right_alt_sep = ""
+let g:airline_symbols.branch = ""
+let g:airline_symbols.readonly = ""
+let g:airline_symbols.linenr = " "
+" let g:airline_symbols = {}
+" let g:airline_left_sep = ">"
+" let g:airline_left_alt_sep = ">"
+" let g:airline_right_sep = "<"
+" let g:airline_right_alt_sep = "<"
+" let g:airline_symbols.branch = "Ч"
+" let g:airline_symbols.readonly = "ro"
+" let g:airline_symbols.linenr = "ln"
 
 " }}}
 " Font settings {{{
@@ -347,14 +408,16 @@ if has("gui_running")
     " set guifont=Meslo\ LG\ S\ for\ Powerline:h12
     " set guifont=Sauce\ Code\ Powerline:h12
     " set guifont=Lucida\ Console:h15
-    set guifont=Consolas:h14
+    " set guifont=Consolas:h14
+    set guifont=DejaVuSansMonoForPowerline\ Nerd:h13
+    " set guifont=AnonymicePowerline\ NF:h13
     " set guifont=Anonymice\ Powerline:h10
-    set renderoptions=type:directx,
-        \gamma:1.8,contrast:0.7,geom:1,
-        \renmode:5,taamode:1,level:0.7
+    " set renderoptions=type:directx,
+    "     \gamma:1.8,contrast:0.7,geom:1,
+    "     \renmode:5,taamode:1,level:0.7
     " set guifont=Inconsolata-g\ for\ Powerline:h13
     " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
-    " set linespace=0
+    set linespace=0
   endif
 else
   " If using ConEmu
@@ -440,7 +503,7 @@ highlight ExtraWhitespace ctermfg=red guifg=red
 match ExtraWhitespace /\s\+$/
 
 " Displaying spaces as dots and EOL as ¬
-set listchars=space:·,tab:▸\ ,eol:¬,trail:♥
+set listchars=tab:▸\ ,trail:♥
 set list!
 
 " Autocompletion stuff...

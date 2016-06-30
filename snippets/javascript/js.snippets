@@ -1,13 +1,13 @@
 # Functions
 
 snippet rcl
-	var ${1:Component} = React.createClass({
-		render: function() {
+	class ${1} extends React.Component {
+		render() {
 			return (
 				${0}
 			);
 		}
-	});
+	};
 snippet =req 
 	var ${1:package} = require('${0}');
 snippet req 
@@ -17,6 +17,8 @@ snippet me
 snippet ins
 	console.log(require('util').inspect(${1}, { showHidden: false, depth: null }));
 	${0}
+snippet rc
+	{/* ${0} */}
 snippet exget 
 	${1:app}.get('${2}', function(req, res) {
 		${0}
