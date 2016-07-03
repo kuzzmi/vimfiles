@@ -1,29 +1,12 @@
-+ Autopopup autocompletion
-+ https://github.com/vim-scripts/autocomplpop.git
-
-+ Nerdtree
-https://github.com/scrooloose/nerdtree.git
-
 + Distraction free editing
 https://github.com/junegunn/goyo.vim.git
 https://github.com/junegunn/limelight.vim.git
 
-+ Cool colorschemes
-https://github.com/junegunn/seoul256.vim.git
-https://github.com/andrwb/vim-lapis256.git
-
 + Commenting stuff
 https://github.com/tomtom/tcomment_vim.git
 
-+ JavaScript lookup
-+ https://github.com/marijnh/tern_for_vim.git
-
 + Some libraries
 https://github.com/tomtom/tlib_vim.git
-
-+ TypeScript support
-https://github.com/Quramy/tsuquyomi.git
-https://github.com/leafgarland/typescript-vim.git
 
 + Syntax checking
 https://github.com/scrooloose/syntastic.git
@@ -31,6 +14,12 @@ https://github.com/othree/javascript-libraries-syntax.vim.git
 
 + Unite. Cool stuff
 https://github.com/Shougo/unite.vim.git
+
++ Plugin for Unite to search MRU sources
+https://github.com/Shougo/neomru.vim.git
+
++ Vimproc
+https://github.com/Shougo/vimproc.vim.git
 
 + Vim Addon MW utils
 https://github.com/MarcWeber/vim-addon-mw-utils.git
@@ -40,13 +29,10 @@ https://github.com/bling/vim-airline.git
 https://github.com/vim-airline/vim-airline-themes.git
 
 + Git plugin
-https://github.com/tpope/vim-fugitive.git
-
-+ Autoreload Makrdown
-+ https://github.com/suan/vim-instant-markdown.git
++ https://github.com/tpope/vim-fugitive.git
 
 + Jade hightlighting
-https://github.com/digitaltoad/vim-jade.git
++ https://github.com/digitaltoad/vim-jade.git
 
 + JS Beautify
 https://github.com/maksimr/vim-jsbeautify.git
@@ -61,12 +47,6 @@ https://github.com/tpope/vim-repeat.git
 https://github.com/garbas/vim-snipmate.git
 https://github.com/honza/vim-snippets.git
 
-+ Vimproc
-https://github.com/Shougo/vimproc.vim.git
-
-+ YouCompleteMe
-+ https://github.com/Valloric/YouCompleteMe
-
 + Autoclose paranthesis
 https://github.com/jiangmiao/auto-pairs
 
@@ -76,11 +56,8 @@ https://github.com/mattn/emmet-vim
 + Javascript
 https://github.com/pangloss/vim-javascript.git
 
-+ Todo Plugin
-+ https://github.com/vitalk/vim-simple-todo
-
 + Handlebars
-https://github.com/mustache/vim-mustache-handlebars.git
++ https://github.com/mustache/vim-mustache-handlebars.git
 
 + Table mode
 https://github.com/dhruvasagar/vim-table-mode
@@ -91,35 +68,23 @@ https://github.com/jscappini/material.vim.git
 + Tomorrow theme
 https://github.com/chriskempson/vim-tomorrow-theme.git
 
-+ Shades of teal
-https://github.com/kristiandupont/shades-of-teal.git
-
 + ES6
 https://github.com/isRuslan/vim-es6.git
 
 + Markdown folding
 https://github.com/nelstrom/vim-markdown-folding.git
 
-+ Go
-https://github.com/fatih/vim-go.git
-
 + neocomplete
 https://github.com/Shougo/neocomplete.vim.git
 
 + VimTex
-https://github.com/lervag/vimtex.git
-
-+ Monochrome theme
-+ https://github.com/fxn/vim-monochrome.git
++ https://github.com/lervag/vimtex.git
 
 + Presentation making tool
 https://github.com/sotte/presenting.vim
 
 + Silver Searcher
 https://github.com/rking/ag.vim
-
-+ Per project vimrc
-https://github.com/krisajenkins/vim-projectlocal.git
 
 + Bubblegum colorscheme
 https://github.com/baskerville/bubblegum.git

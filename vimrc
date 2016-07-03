@@ -269,7 +269,8 @@ call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_com
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
 call unite#custom#profile('default', 'context', {
-\   'winheight': 7
+\   'winheight': 7,
+\   'direction': 'dynamicbottom'
 \ })
 function! s:unite_settings()
     " Enable navigation with control-j and control-k in insert mode
@@ -282,15 +283,7 @@ endfunction
 "
 " Enable 256 Colors
 set t_Co=256
-
-" colorscheme Tomorrow-Night
-" colorscheme Tomorrow
 colorscheme bubblegum-256-dark
-" colorscheme Tomorrow-Night-Eighties
-" In case of using ConEmu
-" if !empty($CONEMUBUILD)
-    " colorscheme Tomorrow-Night-Eighties
-" endif
 
 " }}}
 " Folding {{{
@@ -327,7 +320,7 @@ endfunction
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#use_vimproc = 0
 
 " }}}
@@ -374,12 +367,11 @@ highlight link SyntasticStyleWarningSign SignColumn
 " Vim-airline {{{
 let g:airline_section_y = '%{strftime("%D %T")}'
 set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_theme="bubblegum"
-" let g:airline_theme="light"
 set encoding=utf-8
 
-" 
+"
 let g:airline_symbols = {}
 let g:airline_left_sep = ""
 let g:airline_left_alt_sep = ""
@@ -405,18 +397,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    " set guifont=Meslo\ LG\ S\ for\ Powerline:h12
-    " set guifont=Sauce\ Code\ Powerline:h12
-    " set guifont=Lucida\ Console:h15
-    " set guifont=Consolas:h14
     set guifont=DejaVuSansMonoForPowerline\ Nerd:h13
-    " set guifont=AnonymicePowerline\ NF:h13
-    " set guifont=Anonymice\ Powerline:h10
-    " set renderoptions=type:directx,
-    "     \gamma:1.8,contrast:0.7,geom:1,
-    "     \renmode:5,taamode:1,level:0.7
-    " set guifont=Inconsolata-g\ for\ Powerline:h13
-    " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
     set linespace=0
   endif
 else
@@ -429,7 +410,16 @@ endif
 " }}}
 " Misc {{{
 " ====
-"
+
+" Speed up syntax highlighting {
+   set nocursorcolumn
+   set nocursorline
+   syntax sync minlines=100
+   syntax sync maxlines=240
+   " Don't try to highlight lines longer than 900 characters,
+   " in order to speed up the viewport.
+   set synmaxcol=900
+" }
 
 " Disable swap files from being created
 set noswapfile
@@ -452,6 +442,12 @@ set modelines=1
 " Start scrolling 7 lines before edge
 set so=7
 
+" Horizontal split always to the bottom
+set splitbelow
+
+" Puts vertical windows to right, instead of left.
+set splitright
+
 " Tabs are 4 chars wide
 set tabstop=4
 
@@ -461,6 +457,8 @@ set shiftwidth=4
 " Make backspace work like most other apps
 set backspace=2
 
+" Dont add additional space on S-j
+set nojoinspaces
 
 " Convert tabs to spaces
 set expandtab
