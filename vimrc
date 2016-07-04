@@ -96,25 +96,12 @@ let mapleader = " "
 " }}}
 " Mappings {{{
 " ========
-"
-" Open NERDTree
-nnoremap <leader>f :NERDTreeToggle<CR>
-
-" Toggle fullscreen
-if has("gui_running") && has("gui_win32")
-    nnoremap <silent> <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-    vnoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-    inoremap <silent> <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
-endif
-
-" Beautify on different FileTypes
-autocmd FileType javascript vnoremap <silent> = <V>:call RangeJsBeautify()<CR><Esc>
-autocmd FileType javascript nnoremap <silent> == <V>:call JsBeautify()<CR><Esc>
-autocmd FileType html nnoremap <silent> <leader>u :call HtmlBeautify()<CR>
 
 " Swap go to first non-blank char with go to line beginning
 nnoremap ^ 0
 nnoremap 0 ^
+vnoremap ^ 0
+vnoremap 0 ^
 
 " Navigation by logical lines
 nnoremap j gj
@@ -128,12 +115,6 @@ vnoremap gk k
 
 " Highlight and stay
 nnoremap * *N
-
-" Change current word
-nnoremap <M-1> ciw
-
-" After pasting select pasted text
-" nnoremap p pV']
 
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
@@ -153,8 +134,8 @@ nnoremap <silent> <F9> :set spell!<CR>
 inoremap <silent> <F9> <Esc>:set spell!<CR>gi
 
 " Move line up/down
-nnoremap <silent> <C-+> :m .+1<CR>==
-nnoremap <silent> <C-=> :m .-2<CR>==
+nnoremap <silent> <C-J> :m .+1<CR>==
+nnoremap <silent> <C-K> :m .-2<CR>==
 inoremap <silent> <C-+> <Esc>:m .+1<CR>==gi
 inoremap <silent> <C-=> <Esc>:m .-2<CR>==gi
 vnoremap <silent> <C-+> :m '>+1<CR>gv=gv
@@ -166,11 +147,11 @@ nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-L> <C-W>l
 
-" Open Project plugin
-nnoremap <silent> <F2> :Project<CR>
-
 " Rename current word
 nnoremap <leader>d yiw:%s:<C-R>":
+
+" Search for current word in cwd
+nnoremap <silent> <F11> yiw:Ag <C-R>"<CR>
 
 " Shortcut to enter visual block substitution
 vnoremap <leader>d y<Esc>:%s:<C-R>":
@@ -183,12 +164,6 @@ nnoremap <silent> <leader>p :PresentingStart<CR>:Goyo<CR>
 
 " Git commands
 nnoremap <F10> :Gstatus<CR>
-
-" TypeScript support
-autocmd FileType typescript nnoremap <C-b> :make<CR>
-autocmd FileType typescript inoremap <C-Space> <C-x><C-o>
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
 
 " Increment selected numbers
 function! Incr()
@@ -214,7 +189,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Insert one character
-nnoremap <silent> <C-i> i<Space><Esc>r
+nnoremap <silent> <leader>i i<Space><Esc>r
 
 " Remove search highlighting
 nnoremap <silent> <C-n> :noh<CR>
@@ -224,29 +199,23 @@ nnoremap <silent> <leader>j o<Esc>
 nnoremap <silent> <leader>k O<Esc>
 
 " Break current line with <CR> and stay in normal mode
-nnoremap <F3> i<CR><Esc>
+nnoremap <F3> i<CR><F5><Esc>
 
-" Search mappings: These will make it so that going to the next one in a search will center on the line it's found in.  map N Nzz
+" Search mappings:
+" These will make it so that going to the next one in a search
+" will center on the line it's found in.
 nnoremap n nzz
 nnoremap N Nzz
-
-" Surround word with {{ }}. Used in Angular
-nnoremap <silent> <leader>b i{{<Esc>ea}}<Esc>bb
 
 " Swap ; and :
 " Convenient.
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 " Commenting blocks of code.
 nnoremap <leader>c gcc
-
-" Remap jk to Escape in Insert mode
-inoremap jk <Esc>
-
-" Scroll buffers
-nnoremap <leader>1 :bprev<CR>
-nnoremap <leader>2 :bnext<CR>
 
 " Remove trailing spaces on F5
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -260,23 +229,51 @@ nnoremap <F4> <Esc>ggVG"*y
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
-nnoremap <leader>t :<C-u>UniteWithCurrentDir -auto-resize -buffer-name=files -start-insert file_rec/git<cr>
-nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec<cr>
-nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
 " ignore node_modules and bower_components
 call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/')
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
 call unite#custom#profile('default', 'context', {
-\   'winheight': 7,
+\   'winheight': 20,
 \   'direction': 'dynamicbottom'
 \ })
+
+" Initialize Unite's global list of menus
+if !exists('g:unite_source_menu_menus')
+    let g:unite_source_menu_menus = {}
+endif
+
+" Create an entry for our new menu of commands
+let g:unite_source_menu_menus.bookmarks = {
+\    'description': 'Quick bookmarks'
+\ }
+
+" Define our list of [Label, Command] pairs
+let g:unite_source_menu_menus.bookmarks.command_candidates = [
+\   ['---------------- Folders ----------------', ''],
+\   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
+\   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
+\   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
+\   ['----------------- Files -----------------', ''],
+\   ['vimrc                              [file]', 'e $HOME/vimfiles/vimrc'],
+\   ['js.snippets                        [file]', 'e $HOME/vimfiles/snippets/javascript/js.snippet'],
+\   ['---------------- Commands ---------------', ''],
+\   ['Find...                         [command]', 'exe "Ag " input("pattern: ")'],
+\   ['TODOs                           [command]', 'Ag TODO']
+\ ]
+
 function! s:unite_settings()
     " Enable navigation with control-j and control-k in insert mode
     imap <buffer> <C-j> <Plug>(unite_select_next_line)
     imap <buffer> <C-k> <Plug>(unite_select_previous_line)
 endfunction
+
+" Unite key mappings
+nnoremap <leader>t :<C-u>UniteWithCurrentDir -auto-resize -buffer-name=files -start-insert file_rec/git<cr>
+nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec<cr>
+nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
+nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
 " }}}
 " Colors {{{
 " ======
@@ -499,6 +496,10 @@ set lazyredraw
 highlight ExtraWhitespace ctermfg=red guifg=red
 " ctermfg=white guifg=white
 match ExtraWhitespace /\s\+$/
+
+" TODO test
+highlight MyTodo ctermbg=white ctermfg=red guibg=white guifg=red
+match MyTodo /TODO.*/
 
 " Displaying spaces as dots and EOL as ¬
 set listchars=tab:▸\ ,trail:♥
