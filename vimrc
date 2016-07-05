@@ -199,7 +199,7 @@ nnoremap <silent> <leader>j o<Esc>
 nnoremap <silent> <leader>k O<Esc>
 
 " Break current line with <CR> and stay in normal mode
-nnoremap <F3> i<CR><F5><Esc>
+nnoremap <F3> i<CR><Esc><F5>
 
 " Search mappings:
 " These will make it so that going to the next one in a search
