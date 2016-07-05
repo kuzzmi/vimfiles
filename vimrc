@@ -269,7 +269,7 @@ function! s:unite_settings()
 endfunction
 
 " Unite key mappings
-nnoremap <leader>t :<C-u>UniteWithCurrentDir -auto-resize -buffer-name=files -start-insert file_rec/git<cr>
+nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_rec/async file_mru<cr>
 nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
@@ -371,9 +371,9 @@ set encoding=utf-8
 "
 let g:airline_symbols = {}
 let g:airline_left_sep = ""
-let g:airline_left_alt_sep = ""
+let g:airline_left_alt_sep = ""
 let g:airline_right_sep = ""
-let g:airline_right_alt_sep = ""
+let g:airline_right_alt_sep = ""
 let g:airline_symbols.branch = ""
 let g:airline_symbols.readonly = ""
 let g:airline_symbols.linenr = " "
