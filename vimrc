@@ -245,21 +245,24 @@ endif
 
 " Create an entry for our new menu of commands
 let g:unite_source_menu_menus.bookmarks = {
-\    'description': 'Quick bookmarks'
+\    'description': 'Quick bookmarks and actions'
 \ }
 
 " Define our list of [Label, Command] pairs
 let g:unite_source_menu_menus.bookmarks.command_candidates = [
-\   ['---------------- Folders ----------------', ''],
 \   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
-\   ['----------------- Files -----------------', ''],
+\   ['whubi/whubi-app/client           [folder]', 'cd $HOME/Projects/whubi/whubi-app/client'],
+\   ['whubi/whubi-app/server           [folder]', 'cd $HOME/Projects/whubi/whubi-app/server'],
+\   ['---------------- Folders ----------------', ''],
 \   ['vimrc                              [file]', 'e $HOME/vimfiles/vimrc'],
-\   ['js.snippets                        [file]', 'e $HOME/vimfiles/snippets/javascript/js.snippet'],
+\   ['js.snippets                        [file]', 'e $HOME/vimfiles/snippets/javascript/js.snippets'],
+\   ['----------------- Files -----------------', ''],
+\   ['Find in sources...              [command]', 'exe "Ag " input("pattern: ")'],
+\   ['New file here...                [command]', 'exe "e %:p:h/" . input("pattern: ")'],
+\   ['New file here (split)...        [command]', 'exe "split %:p:h/" .  input("pattern: ")'],
 \   ['---------------- Commands ---------------', ''],
-\   ['Find...                         [command]', 'exe "Ag " input("pattern: ")'],
-\   ['TODOs                           [command]', 'Ag TODO']
 \ ]
 
 function! s:unite_settings()
