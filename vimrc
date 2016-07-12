@@ -113,6 +113,32 @@ vnoremap gj j
 vnoremap k gk
 vnoremap gk k
 
+" Remapping numbers to their symbols
+inoremap ! 1
+inoremap @ 2
+inoremap # 3
+inoremap $ 4
+inoremap % 5
+inoremap ^ 6
+inoremap & 7
+inoremap * 8
+verbose inoremap ( 9
+verbose inoremap ) 0
+inoremap 1 !
+inoremap 2 @
+inoremap 3 #
+inoremap 4 $
+inoremap 5 %
+inoremap 6 ^
+inoremap 7 &
+inoremap 8 *
+verbose inoremap 9 (
+verbose inoremap 0 )
+verbose inoremap [ {
+verbose inoremap ] }
+verbose inoremap { [
+verbose inoremap } ]
+
 " Highlight and stay
 nnoremap * *N
 

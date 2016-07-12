@@ -1,5 +1,15 @@
 # Functions
 
+snippet desc
+	describe('${1}', () => {
+		it('${2}', () => {
+			${0}
+		});
+	});
+snippet it
+	it('${1}', () => {
+		${0}
+	});
 snippet ec
 	export const ${0}
 snippet bind

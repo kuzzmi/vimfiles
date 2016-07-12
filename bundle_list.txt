@@ -48,7 +48,7 @@ https://github.com/garbas/vim-snipmate.git
 https://github.com/honza/vim-snippets.git
 
 + Autoclose paranthesis
-https://github.com/jiangmiao/auto-pairs
++ https://github.com/jiangmiao/auto-pairs
 
 + WOOOHOOO Emmet!!!
 https://github.com/mattn/emmet-vim
