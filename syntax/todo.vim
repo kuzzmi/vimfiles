@@ -22,6 +22,8 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 syn region todoAPIBody              start=/```/ end=/```/
+syn region todoSectionHeaderTitle   start=/\~/ end=/\~/
+syn match todoSectionHeaderLine     "^=\+$"
 syn match todoCheckboxUnchecked     "^\s*. \?\[ \]"
 syn match todoCheckboxChecked       "^\s*. \?\[x\]"
 syn match todoJIRAStoryID           "\(UNI\|PRE\)-\d\{3,\}"
@@ -50,6 +52,9 @@ if version >= 508 || !exists("did_javascript_syn_inits")
   HiLink todoAPIBody                  String
   HiLink todoKeywords                 Keyword
   HiLink todoEndpointMethod           EndpointMethod
+  HiLink todoEndpointPath             EndpointPath
+  HiLink todoSectionHeaderLine        Keyword
+  HiLink todoSectionHeaderTitle       KeywordBold
   HiLink todoEndpointPath             EndpointPath
   delcommand HiLink
 endif
