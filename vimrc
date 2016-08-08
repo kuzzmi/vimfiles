@@ -122,8 +122,8 @@ inoremap % 5
 inoremap ^ 6
 inoremap & 7
 inoremap * 8
-verbose inoremap ( 9
-verbose inoremap ) 0
+inoremap ( 9
+inoremap ) 0
 inoremap 1 !
 inoremap 2 @
 inoremap 3 #
@@ -132,12 +132,12 @@ inoremap 5 %
 inoremap 6 ^
 inoremap 7 &
 inoremap 8 *
-verbose inoremap 9 (
-verbose inoremap 0 )
-verbose inoremap [ {
-verbose inoremap ] }
-verbose inoremap { [
-verbose inoremap } ]
+inoremap 9 (
+inoremap 0 )
+inoremap [ {
+inoremap ] }
+inoremap { [
+inoremap } ]
 
 " Highlight and stay
 nnoremap * *N
@@ -289,6 +289,7 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
 \   ['whubi/whubi-app/client           [folder]', 'cd $HOME/Projects/whubi/whubi-app/client'],
 \   ['whubi/whubi-app/server           [folder]', 'cd $HOME/Projects/whubi/whubi-app/server'],
+\   ['whubi/website                    [folder]', 'cd c:/wamp64/www/wp-content/themes/whubi-main-theme'],
 \   ['---------------- Folders ----------------', ''],
 \   ['vimrc                              [file]', 'e $HOME/vimfiles/vimrc'],
 \   ['js.snippets                        [file]', 'e $HOME/vimfiles/snippets/javascript/js.snippets'],
@@ -308,8 +309,8 @@ endfunction
 " Unite key mappings
 nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_rec/async file_mru<cr>
 nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec<cr>
-nnoremap <leader>y :<C-u>Unite -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
+nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -start-insert -buffer-name=buffer buffer<cr>
 nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
 " }}}
 " Colors {{{
@@ -399,7 +400,7 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 " }}}
 " Vim-airline {{{
-let g:airline_section_y = '%{strftime("%D %T")}'
+let g:airline_section_y = '%{strftime("%H:%M")}'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_theme="bubblegum"
@@ -445,6 +446,9 @@ endif
 " Misc {{{
 " ====
 
+" Set up initial size
+set lines=50 columns=100
+
 " Speed up syntax highlighting {
    set nocursorcolumn
    set nocursorline
@@ -452,7 +456,7 @@ endif
    syntax sync maxlines=240
    " Don't try to highlight lines longer than 900 characters,
    " in order to speed up the viewport.
-   set synmaxcol=900
+   set synmaxcol=300
 " }
 
 " Disable swap files from being created
