@@ -144,6 +144,12 @@ nnoremap * *N
 
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
+" Emmet extends jsx with js
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 " Toggle distraction modee
 " autocmd! User GoyoEnter Limelight
@@ -226,6 +232,8 @@ nnoremap <silent> <leader>k O<Esc>
 
 " Break current line with <CR> and stay in normal mode
 nnoremap <F3> i<CR><Esc><F5>
+
+nnoremap <leader>x Y:s:\[ \]:[x]:<CR>Go[updated at: <Esc>:pu=strftime('%c')<CR>kJA]<Esc>:nohl<CR>po<Esc><C-o>
 
 " Search mappings:
 " These will make it so that going to the next one in a search
