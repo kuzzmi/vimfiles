@@ -12,12 +12,12 @@ snippet cwrp
 		${0}
 	}
 snippet scu
-	shouldComponentUpdate(${1:nextProps, }${2:nextState}) {
+	shouldComponentUpdate(${1:nextProps}${2:, nextState}) {
 		${0}
 		return true;
 	}
 snippet cdu
-	componentDidUpdate(${1:nextProps, }${2:nextState}) {
+	componentDidUpdate(${1:nextProps}${2:, nextState}) {
 		${0}
 	}
 snippet cwu
@@ -25,9 +25,19 @@ snippet cwu
 		${0}
 	}
 
+snippet ss
+	this.setState(${0});
+
+snippet pt
+	PropTypes.${1:any}${2:.isRequired}
+
+snippet cn
+	className={ ${1:classes.}${2} }${0:>}
+
+# ES6 constructor
 snippet cons
-	constructor(${1}) {
-		super(${1});
+	constructor(${1:props}) {
+		super($1);
 		${0}
 	}
 
@@ -47,7 +57,7 @@ snippet it
 snippet ec
 	export const ${0}
 snippet bind
-	this.${1:fn} = this.${1:fn}.bind(this);
+	this.${1:fn} = this.$1.bind(this);
 snippet rcl
 	class ${1} extends React.Component {
 		render() {
@@ -57,7 +67,7 @@ snippet rcl
 		}
 	};
 snippet =req
-	var ${1:package} = require('${0}');
+	const ${1:package} = require('${0}');
 snippet req
 	require('${1}');
 snippet me

@@ -256,6 +256,12 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Copy whole file to clipboard
 nnoremap <F4> <Esc>ggVG"*y
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " }}}
 " Unite.vim {{{
 " =========
@@ -287,7 +293,8 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
-\   ['whubi/whubi-app/client           [folder]', 'cd $HOME/Projects/whubi/whubi-app/client'],
+\   ['react-better-date-picker         [folder]', 'cd $HOME/Projects/react-better-date-picker'],
+\   ['whubi/whubi-app/client           [folder]', 'cd $HOME/Projects/whubi/whubi-app/client/src'],
 \   ['whubi/whubi-app/server           [folder]', 'cd $HOME/Projects/whubi/whubi-app/server'],
 \   ['whubi/website                    [folder]', 'cd c:/wamp64/www/wp-content/themes/whubi-main-theme'],
 \   ['---------------- Folders ----------------', ''],
