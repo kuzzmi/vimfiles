@@ -88,3 +88,9 @@ https://github.com/rking/ag.vim
 
 + Bubblegum colorscheme
 https://github.com/baskerville/bubblegum.git
+
++ Vim Easy Align
+https://github.com/junegunn/vim-easy-align.git
+
++ Argumentative
+https://github.com/PeterRincker/vim-argumentative.git

@@ -262,6 +262,10 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+nnoremap <silent> <F2> :!eslint --fix %<CR>
+inoremap <silent> <F2> <Esc>:!eslint --fix %<CR>
+
 " }}}
 " Unite.vim {{{
 " =========
@@ -294,8 +298,9 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
 \   ['react-better-date-picker         [folder]', 'cd $HOME/Projects/react-better-date-picker'],
-\   ['whubi/whubi-app/client           [folder]', 'cd $HOME/Projects/whubi/whubi-app/client/src'],
-\   ['whubi/whubi-app/server           [folder]', 'cd $HOME/Projects/whubi/whubi-app/server'],
+\   ['whubi/clients/desktop            [folder]', 'cd $HOME/Projects/whubi/clients/desktop'],
+\   ['whubi/clients/webapp             [folder]', 'cd $HOME/Projects/whubi/clients/webapp'],
+\   ['whubi/backend/api                [folder]', 'cd $HOME/Projects/whubi/backend/api'],
 \   ['whubi/website                    [folder]', 'cd c:/wamp64/www/wp-content/themes/whubi-main-theme'],
 \   ['---------------- Folders ----------------', ''],
 \   ['vimrc                              [file]', 'e $HOME/vimfiles/vimrc'],
