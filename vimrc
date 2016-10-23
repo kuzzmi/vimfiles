@@ -41,52 +41,6 @@ set number
 autocmd InsertEnter * silent! :set number
 autocmd InsertLeave,BufNewFile,VimEnter * silent! :set relativenumber
 " }}}
-" Explore (NERDTree) {{{
-" ==============
-"
-" let g:netrw_list_hide= '^\..*'
-" let g:netrw_hide = 1
-" let g:netrw_liststyle = 3
-" let g:netrw_keepdir = 0
-autocmd StdinReadPre * let s:std_in=1
-" NERDTree open if VIM's empty
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" let g:NERDTreeDirArrowExpandable = ' '
-" let g:NERDTreeDirArrowCollapsible = ' '
-let g:NERDTreeCopyCmd= 'cp -r'
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guifg='. a:guifg
-exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'white', 'none', '#FF896A', '#151515')
-call NERDTreeHighlightFile('md', 'white', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'white', 'none', '#FF896A', '#151515')
-call NERDTreeHighlightFile('config', 'white', 'none', '#FF896A', '#151515')
-call NERDTreeHighlightFile('conf', 'white', 'none', '#FF896A', '#151515')
-call NERDTreeHighlightFile('html', 'cyan', 'none', '#FF896A', '#151515')
-
-call NERDTreeHighlightFile('styl', 'cyan', 'none', '#00C4FF', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', '#00C4FF', '#151515')
-call NERDTreeHighlightFile('scss', 'cyan', 'none', '#00C4FF', '#151515')
-call NERDTreeHighlightFile('sass', 'cyan', 'none', '#00C4FF', '#151515')
-
-call NERDTreeHighlightFile('coffee', 'Red', 'none', '#FF896A', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#FF896A', '#151515')
-call NERDTreeHighlightFile('json', 'Red', 'none', '#FF896A', '#151515')
-
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
-call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
-set fillchars+=vert:\|
-" }}}
 " Leader key {{{
 " ==========
 "
@@ -274,7 +228,7 @@ let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 " ignore node_modules and bower_components
-call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/')
+call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/\|dist/\|blueprints/')
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
 call unite#custom#profile('default', 'context', {
@@ -330,7 +284,8 @@ nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
 "
 " Enable 256 Colors
 set t_Co=256
-colorscheme bubblegum-256-dark
+colorscheme lucius
+" colorscheme bubblegum-256-dark
 
 " }}}
 " Folding {{{
@@ -368,7 +323,7 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#use_vimproc = 0
+let g:neocomplete#use_vimproc = 1
 
 " }}}
 " Vim-go {{{
