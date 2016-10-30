@@ -284,7 +284,8 @@ nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
 "
 " Enable 256 Colors
 set t_Co=256
-colorscheme lucius
+" colorscheme lucius
+colorscheme Base2Tone-Evening-dark
 " colorscheme bubblegum-256-dark
 
 " }}}
@@ -370,7 +371,8 @@ highlight link SyntasticStyleWarningSign SignColumn
 let g:airline_section_y = '%{strftime("%H:%M")}'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 0
-let g:airline_theme="bubblegum"
+" let g:airline_theme="bubblegum"
+let g:airline_theme="tomorrow"
 set encoding=utf-8
 
 "
