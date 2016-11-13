@@ -416,7 +416,7 @@ endif
 " ====
 
 " Set up initial size
-set lines=50 columns=100
+" set lines=50 columns=100
 
 " Speed up syntax highlighting {
    set nocursorcolumn

@@ -94,3 +94,6 @@ https://github.com/junegunn/vim-easy-align.git
 
 + Argumentative
 https://github.com/PeterRincker/vim-argumentative.git
+
++ Base2Tone
+https://github.com/atelierbram/Base2Tone-vim.git

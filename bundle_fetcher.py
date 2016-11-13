@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """
 Used GitPython
 This module downloads all git modules used by VIM
@@ -10,10 +12,10 @@ import os
 BUNDLE_LIST = open("bundle_list.txt", "r")
 ROOT = "bundle"
 
-TOTAL = 0
+TOTAL   = 0
 SKIPPED = 0
-GOOD = 0
-BAD = 0
+GOOD    = 0
+BAD     = 0
 
 print( "Trying to fetch all your vim modules..." )
 print( "" )
@@ -49,5 +51,4 @@ for line in BUNDLE_LIST:
                 BAD += 1
 
 print ( "" )
-print ( "Total: {0}. Skipped {1} repos, {2} fetched, {3} failed" ) \
-    .format(TOTAL, SKIPPED, GOOD, BAD)
+print ( "Total: {0}. Skipped {1} repos, {2} fetched, {3} failed" ).format(TOTAL, SKIPPED, GOOD, BAD)
