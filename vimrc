@@ -119,19 +119,14 @@ nnoremap gV `[v`]
 nnoremap <silent> <F9> :set spell!<CR>
 inoremap <silent> <F9> <Esc>:set spell!<CR>gi
 
-" Move line up/down
-nnoremap <silent> <C-J> :m .+1<CR>==
-nnoremap <silent> <C-K> :m .-2<CR>==
-inoremap <silent> <C-+> <Esc>:m .+1<CR>==gi
-inoremap <silent> <C-=> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <C-+> :m '>+1<CR>gv=gv
-vnoremap <silent> <C-=> :m '<-2<CR>gv=gv
-
 " Switch between windows
 nnoremap <silent> <C-K> <C-W>k
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-L> <C-W>l
+
+" Open a file under cursor in a vertical split
+nnoremap <C-w>V <C-w>vgf
 
 " Rename current word
 nnoremap <leader>d yiw:%s:<C-R>":
@@ -148,9 +143,6 @@ nnoremap <leader>a Go
 " Open a presentation with Goyo
 nnoremap <silent> <leader>p :PresentingStart<CR>:Goyo<CR>
 
-" Git commands
-nnoremap <F10> :Gstatus<CR>
-
 " Increment selected numbers
 function! Incr()
     let a = line('.') - line("'<")
@@ -162,13 +154,10 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>
 
-" Toggle folding by <Space-Z>
-nnoremap <leader>z za
-onoremap <leader>z <C-C>za
-
 " Duplicate current selection
 nnoremap <C-D> yyP
 inoremap <C-D> <Esc>yyPi
+vnoremap <C-D> y/\V<C-R>"<CR>
 
 " Indentation without losing selection
 vnoremap > >gv
@@ -202,9 +191,6 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-" Commenting blocks of code.
-nnoremap <leader>c gcc
-
 " Remove trailing spaces on F5
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -226,7 +212,7 @@ inoremap <silent> <F2> <Esc>:!eslint --fix %<CR>
 "
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+" let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 " ignore node_modules and bower_components
 call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/\|dist/\|blueprints/')
 " Custom mappings for the unite buffer
@@ -248,19 +234,11 @@ let g:unite_source_menu_menus.bookmarks = {
 
 " Define our list of [Label, Command] pairs
 let g:unite_source_menu_menus.bookmarks.command_candidates = [
-\   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
-\   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
+\   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
 \   ['probe-mobile                     [folder]', 'cd $HOME/Projects/probe-mobile'],
 \   ['probe-frontend                   [folder]', 'cd $HOME/Projects/probe-frontend'],
 \   ['probe-backend                    [folder]', 'cd $HOME/Projects/probe-backend'],
-\   ['react-spa-wp                     [folder]', 'cd $HOME/Projects/react-spa-wp'],
-\   ['github-streak                    [folder]', 'cd $HOME/Projects/github-streak'],
-\   ['react-better-date-picker         [folder]', 'cd $HOME/Projects/react-better-date-picker'],
-\   ['whubi/clients/desktop            [folder]', 'cd $HOME/Projects/whubi/clients/desktop'],
-\   ['whubi/clients/webapp             [folder]', 'cd $HOME/Projects/whubi/clients/webapp'],
-\   ['whubi/backend/api                [folder]', 'cd $HOME/Projects/whubi/backend/api'],
-\   ['whubi/website                    [folder]', 'cd c:/wamp64/www/wp-content/themes/whubi-main-theme'],
 \   ['---------------- Folders ----------------', ''],
 \   ['vimrc                              [file]', 'e $HOME/vimfiles/vimrc'],
 \   ['js.snippets                        [file]', 'e $HOME/vimfiles/snippets/javascript/js.snippets'],
@@ -284,9 +262,12 @@ nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert fil
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -start-insert -buffer-name=buffer buffer<cr>
 nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
+nnoremap <leader>g :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec:<C-r>=substitute(expand('%:h'), "\\", "\/", "g")<cr><cr>
 " }}}
 " Colors and font settings {{{
 set t_Co=256
+colorscheme codeschool
+
 if !has("gui_running")
     " If using ConEmu
     if !empty($CONEMUBUILD)
@@ -313,8 +294,6 @@ endif
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
-" Adding new folding method:
-" au FileType javascript call JavaScriptFold()
 
 " }}}
 " Neocomplete {{{
@@ -386,15 +365,21 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 " }}}
 " Vim-airline {{{
-let g:airline_section_y = '%{strftime("%H:%M")}'
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 0
-" let g:airline_theme="bubblegum"
 let g:airline_theme="tomorrow"
 set encoding=utf-8
 
 "
 let g:airline_symbols = {}
+let g:airline_left_sep = ""
+let g:airline_left_alt_sep = ""
+let g:airline_right_sep = ""
+let g:airline_right_alt_sep = ""
+let g:airline_symbols.space = " "
+let g:airline_symbols.branch = ""
+let g:airline_symbols.readonly = ""
+let g:airline_symbols.linenr = "■"
 " let g:airline_left_sep = ""
 " let g:airline_left_alt_sep = ""
 " let g:airline_right_sep = ""
@@ -403,27 +388,44 @@ let g:airline_symbols = {}
 " let g:airline_symbols.readonly = ""
 " let g:airline_symbols.linenr = " "
 " let g:airline_symbols = {}
-let g:airline_left_sep = "▓▒"
-let g:airline_left_alt_sep = "▒░"
-let g:airline_right_sep = "▒▓"
-let g:airline_right_alt_sep = "░▒"
-let g:airline_symbols.branch = "br"
-let g:airline_symbols.readonly = "ro"
-let g:airline_symbols.linenr = "ln"
+" let g:airline_left_sep = "▓▒"
+" let g:airline_left_alt_sep = "▒░"
+" let g:airline_right_sep = "▒▓"
+" let g:airline_right_alt_sep = "░▒"
+" let g:airline_symbols.branch = "br"
+" let g:airline_symbols.readonly = "ro"
+" let g:airline_symbols.linenr = "ln"
 
+" }}}
+" Font settings {{{
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Input:h15
+  endif
+else
+  " If using ConEmu
+  if !empty($CONEMUBUILD)
+    set term=pcansi
+    set t_Co=256
+  endif
+endif
 " }}}
 " Misc {{{
 " ====
 
 " Set up initial size
-set lines=50 columns=100
+" set lines=50 columns=100
 
 " Speed up syntax highlighting {
    set nocursorcolumn
    set nocursorline
    syntax sync minlines=100
    syntax sync maxlines=240
-   " Don't try to highlight lines longer than 900 characters,
+   " Don't try to highlight lines longer than 300 characters,
    " in order to speed up the viewport.
    set synmaxcol=300
 " }
@@ -444,7 +446,7 @@ set guioptions-=L
 set modelines=1
 
 " Automatic reloading of .vimrc
-" autocmd! bufwritepost vimrc source %
+autocmd! bufwritepost vimrc source %
 
 " Start scrolling 7 lines before edge
 set so=7
@@ -512,11 +514,11 @@ highlight MyTodo ctermbg=white ctermfg=red guibg=white guifg=red
 match MyTodo /TODO.*/
 
 " Displaying spaces as dots and EOL as ¬
-set listchars=tab:▸\ ,trail:♥
+set listchars=tab:-\ ,trail:♥
 set list!
 
 " Autocompletion stuff...
-" set complete=.,w,b,u,U,t,i,d
+" set complete=.,w,b,u,U,t,i,d,k
 " set complete+=k
 " set dictionary=./words/english,./words/russian
 

@@ -1,3 +1,23 @@
+# React Redux And All That Crap
+snippet cs
+	createSelector(
+		${1:selector},
+		${2:result} => $2${0}
+	);
+
+# class function
+snippet cf
+	${1:fn}(${2}) {
+		${0}
+	}
+
+# class function
+snippet rcf
+	${1:fn}(${2}) {
+		const { ${3} } = this.props;
+		${0}
+	}
+
 # React Lifecycle Hooks
 snippet cwm
 	componentWillMount() {
@@ -44,12 +64,12 @@ snippet cons
 # Testing
 snippet desc
 	describe('${1}', () => {
-		it('${2}', () => {
+		it('should ${2}', () => {
 			${0}
 		});
 	});
 snippet it
-	it('${1}', () => {
+	it('should ${1}', () => {
 		${0}
 	});
 
@@ -91,12 +111,12 @@ snippet rc
 # setInterval function
 snippet si
 	setInterval(function() {
-	    ${0}
+		${0}
 	}, ${1:10});
 # setTimeout function
 snippet st
 	setTimeout(function() {
-	    ${0}
+		${0}
 	}, ${1:10});
 snippet /*
 	/*

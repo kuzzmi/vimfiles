@@ -28,15 +28,6 @@ https://github.com/MarcWeber/vim-addon-mw-utils.git
 https://github.com/bling/vim-airline.git
 https://github.com/vim-airline/vim-airline-themes.git
 
-+ Git plugin
-+ https://github.com/tpope/vim-fugitive.git
-
-+ Jade hightlighting
-+ https://github.com/digitaltoad/vim-jade.git
-
-+ JS Beautify
-https://github.com/maksimr/vim-jsbeautify.git
-
 + Surround plugin
 https://github.com/tpope/vim-surround.git
 
@@ -46,9 +37,6 @@ https://github.com/tpope/vim-repeat.git
 + Snippets
 https://github.com/garbas/vim-snipmate.git
 https://github.com/honza/vim-snippets.git
-
-+ Autoclose paranthesis
-+ https://github.com/jiangmiao/auto-pairs
 
 + WOOOHOOO Emmet!!!
 https://github.com/mattn/emmet-vim
@@ -61,9 +49,6 @@ https://github.com/pangloss/vim-javascript.git
 
 + Table mode
 https://github.com/dhruvasagar/vim-table-mode
-
-+ Material Theme
-https://github.com/jscappini/material.vim.git
 
 + Tomorrow theme
 https://github.com/chriskempson/vim-tomorrow-theme.git
@@ -86,11 +71,11 @@ https://github.com/sotte/presenting.vim
 + Silver Searcher
 https://github.com/rking/ag.vim
 
-+ Bubblegum colorscheme
-https://github.com/baskerville/bubblegum.git
-
 + Vim Easy Align
 https://github.com/junegunn/vim-easy-align.git
 
 + Argumentative
 https://github.com/PeterRincker/vim-argumentative.git
+
++ Base2Tone
+https://github.com/atelierbram/Base2Tone-vim.git
