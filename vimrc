@@ -251,6 +251,11 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/portal                     [folder]', 'cd $HOME/Projects/PULSE/portal'],
+\   ['probe-mobile                     [folder]', 'cd $HOME/Projects/probe-mobile'],
+\   ['probe-frontend                   [folder]', 'cd $HOME/Projects/probe-frontend'],
+\   ['probe-backend                    [folder]', 'cd $HOME/Projects/probe-backend'],
+\   ['react-spa-wp                     [folder]', 'cd $HOME/Projects/react-spa-wp'],
+\   ['github-streak                    [folder]', 'cd $HOME/Projects/github-streak'],
 \   ['react-better-date-picker         [folder]', 'cd $HOME/Projects/react-better-date-picker'],
 \   ['whubi/clients/desktop            [folder]', 'cd $HOME/Projects/whubi/clients/desktop'],
 \   ['whubi/clients/webapp             [folder]', 'cd $HOME/Projects/whubi/clients/webapp'],
@@ -261,6 +266,7 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['js.snippets                        [file]', 'e $HOME/vimfiles/snippets/javascript/js.snippets'],
 \   ['----------------- Files -----------------', ''],
 \   ['Find in sources...              [command]', 'exe "Ag " input("pattern: ")'],
+\   ['Remove and close current file   [command]', 'call delete(expand("%")) | bdelete!'],
 \   ['New file here...                [command]', 'exe "e %:p:h/" . input("pattern: ")'],
 \   ['New file here (split)...        [command]', 'exe "split %:p:h/" .  input("pattern: ")'],
 \   ['---------------- Commands ---------------', ''],
@@ -274,20 +280,32 @@ endfunction
 
 " Unite key mappings
 nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_rec/async file_mru<cr>
-nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec<cr>
+nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec:!<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -start-insert -buffer-name=buffer buffer<cr>
 nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
 " }}}
-" Colors {{{
-" ======
-"
-" Enable 256 Colors
+" Colors and font settings {{{
 set t_Co=256
-" colorscheme lucius
-colorscheme Base2Tone-Evening-dark
-" colorscheme bubblegum-256-dark
-
+if !has("gui_running")
+    " If using ConEmu
+    if !empty($CONEMUBUILD)
+        set term=pcansi
+        set t_Co=256
+    endif
+    colorscheme bubblegum-256-dark
+else
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ 12
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
+    elseif has("gui_win32")
+        " set guifont=Anka\/Coder\ Narrow:h15
+        set guifont=Input:h16
+        set linespace=0
+    endif
+    colorscheme Base2Tone-Space-dark
+endif
 " }}}
 " Folding {{{
 " =======
@@ -377,40 +395,22 @@ set encoding=utf-8
 
 "
 let g:airline_symbols = {}
-let g:airline_left_sep = ""
-let g:airline_left_alt_sep = ""
-let g:airline_right_sep = ""
-let g:airline_right_alt_sep = ""
-let g:airline_symbols.branch = ""
-let g:airline_symbols.readonly = ""
-let g:airline_symbols.linenr = " "
+" let g:airline_left_sep = ""
+" let g:airline_left_alt_sep = ""
+" let g:airline_right_sep = ""
+" let g:airline_right_alt_sep = ""
+" let g:airline_symbols.branch = ""
+" let g:airline_symbols.readonly = ""
+" let g:airline_symbols.linenr = " "
 " let g:airline_symbols = {}
-" let g:airline_left_sep = ">"
-" let g:airline_left_alt_sep = ">"
-" let g:airline_right_sep = "<"
-" let g:airline_right_alt_sep = "<"
-" let g:airline_symbols.branch = "Ч"
-" let g:airline_symbols.readonly = "ro"
-" let g:airline_symbols.linenr = "ln"
+let g:airline_left_sep = "▓▒"
+let g:airline_left_alt_sep = "▒░"
+let g:airline_right_sep = "▒▓"
+let g:airline_right_alt_sep = "░▒"
+let g:airline_symbols.branch = "br"
+let g:airline_symbols.readonly = "ro"
+let g:airline_symbols.linenr = "ln"
 
-" }}}
-" Font settings {{{
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=DejaVuSansMonoForPowerline\ Nerd:h13
-    set linespace=0
-  endif
-else
-  " If using ConEmu
-  if !empty($CONEMUBUILD)
-    set term=pcansi
-    set t_Co=256
-  endif
-endif
 " }}}
 " Misc {{{
 " ====
