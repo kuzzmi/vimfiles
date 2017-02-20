@@ -212,7 +212,7 @@ inoremap <silent> <F2> <Esc>:!eslint --fix %<CR>
 "
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 " ignore node_modules and bower_components
 call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/\|dist/\|blueprints/')
 " Custom mappings for the unite buffer
@@ -258,7 +258,7 @@ endfunction
 
 " Unite key mappings
 nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_rec/async file_mru<cr>
-nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec:!<cr>
+nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec/async:!<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -start-insert -buffer-name=buffer buffer<cr>
 nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
@@ -524,6 +524,9 @@ set list!
 
 " Turn off bell
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
+
+" Enable JSX highlighting in .js files
+let g:jsx_ext_required = 0
 
 " Per Project configurations
 set exrc
