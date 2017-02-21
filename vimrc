@@ -96,8 +96,20 @@ inoremap } ]
 " Highlight and stay
 nnoremap * *N
 
+imap <silent> <M-1> <c-r>=emmet#util#closePopup()<cr><c-r>=emmet#expandAbbr(0,"")<cr><CR><Esc>O<Tab>
+inoremap <silent> <M-2> im<c-r>=snipMate#TriggerSnippet()<cr>
+
+" Testing a new "special char" layer
+inoremap <M-h> [
+inoremap <M-j> ]
+inoremap <M-k> {
+inoremap <M-l> }
+inoremap <M-y> <
+inoremap <M-u> >
+
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
+
 " Emmet extends jsx with js
 let g:user_emmet_settings = {
 \  'javascript' : {
@@ -106,8 +118,6 @@ let g:user_emmet_settings = {
 \}
 
 " Toggle distraction modee
-" autocmd! User GoyoEnter Limelight
-" autocmd! User GoyoLeave Limelight!
 let g:limelight_default_coefficient = 0.8
 let g:goyo_width = 80
 nnoremap <silent> <leader>] :Goyo<CR>
@@ -212,7 +222,7 @@ inoremap <silent> <F2> <Esc>:!eslint --fix %<CR>
 "
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nogroup', '--nocolor', '--hidden', '-g', '']
 " ignore node_modules and bower_components
 call unite#custom#source('file_rec', 'ignore_pattern', 'node_modules/\|bower_components/\|dist/\|blueprints/')
 " Custom mappings for the unite buffer
@@ -257,7 +267,7 @@ function! s:unite_settings()
 endfunction
 
 " Unite key mappings
-nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_rec/async file_mru<cr>
+nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_mru<cr>
 nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec/async:!<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -start-insert -buffer-name=buffer buffer<cr>
@@ -315,7 +325,7 @@ function! s:my_cr_function()
   return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -525,8 +535,8 @@ set list!
 " Turn off bell
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
 
-" Enable JSX highlighting in .js files
-let g:jsx_ext_required = 0
+" Closetag files
+let g:closetag_filenames = "*.html,*.js,*.jsx"
 
 " Per Project configurations
 set exrc

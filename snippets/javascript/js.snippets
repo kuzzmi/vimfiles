@@ -1,3 +1,10 @@
+# PULSE specific stuff
+snippet ipr
+	label="${2:Input Label}"
+	name="${1:name}"
+	value={ form.$1.value }
+	${3:/>}
+
 # React Redux And All That Crap
 snippet cs
 	createSelector(
@@ -52,7 +59,7 @@ snippet pt
 	PropTypes.${1:any}${2:.isRequired}
 
 snippet cn
-	className={ ${1:classes.}${2} }${0:>}
+	className=${1:{ classes.${2} }}
 
 # ES6 constructor
 snippet cons
@@ -90,7 +97,7 @@ snippet ec
 snippet bind
 	this.${1:fn} = this.$1.bind(this);
 snippet rcl
-	class ${1} extends React.Component {
+	class ${1} extends Component {
 		render() {
 			return (
 				${0}

@@ -80,5 +80,8 @@ https://github.com/PeterRincker/vim-argumentative.git
 + Base2Tone
 https://github.com/atelierbram/Base2Tone-vim.git
 
-+ JSX indent and highlighting
-https://github.com/mxw/vim-jsx.git
++ Close XHTML tags
+https://github.com/alvan/vim-closetag.git
+
++ JSX
+https://github.com/MaxMEllon/vim-jsx-pretty.git
