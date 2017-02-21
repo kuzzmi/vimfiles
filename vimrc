@@ -88,15 +88,11 @@ inoremap 7 &
 inoremap 8 *
 inoremap 9 (
 inoremap 0 )
-inoremap [ {
-inoremap ] }
-inoremap { [
-inoremap } ]
 
 " Highlight and stay
 nnoremap * *N
 
-imap <silent> <M-1> <c-r>=emmet#util#closePopup()<cr><c-r>=emmet#expandAbbr(0,"")<cr><CR><Esc>O<Tab>
+imap <silent> <M-1> <c-r>=emmet#util#closePopup()<cr><c-r>=emmet#expandAbbr(0,"")<cr><CR><Esc>O
 inoremap <silent> <M-2> im<c-r>=snipMate#TriggerSnippet()<cr>
 
 " Testing a new "special char" layer
@@ -363,6 +359,7 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 let g:syntastic_error_symbol = '✖'
 let g:syntastic_style_error_symbol = '☠'
