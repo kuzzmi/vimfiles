@@ -5,6 +5,11 @@ snippet ipr
 	value={ form.$1.value }
 	${3:/>}
 
+snippet ts
+	this.state = {
+		${0}
+	};
+
 # React Redux And All That Crap
 snippet cs
 	createSelector(
@@ -53,7 +58,9 @@ snippet cwu
 	}
 
 snippet ss
-	this.setState(${0});
+	this.setState({
+		${0}
+	});
 
 snippet pt
 	PropTypes.${1:any}${2:.isRequired}

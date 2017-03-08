@@ -242,6 +242,7 @@ let g:unite_source_menu_menus.bookmarks = {
 let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
+\   ['whubi/backend/api                [folder]', 'cd $HOME/Projects/whubi/backend/api'],
 \   ['probe-mobile                     [folder]', 'cd $HOME/Projects/probe-mobile'],
 \   ['probe-frontend                   [folder]', 'cd $HOME/Projects/probe-frontend'],
 \   ['probe-backend                    [folder]', 'cd $HOME/Projects/probe-backend'],
@@ -272,7 +273,6 @@ nnoremap <leader>g :<C-u>Unite -auto-resize -buffer-name=files -start-insert fil
 " }}}
 " Colors and font settings {{{
 set t_Co=256
-colorscheme codeschool
 
 if !has("gui_running")
     " If using ConEmu
@@ -287,11 +287,9 @@ else
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
-        " set guifont=Anka\/Coder\ Narrow:h15
-        set guifont=Input:h16
-        set linespace=0
+        set guifont=InputMonoCompressed:h16
     endif
-    colorscheme Base2Tone-Space-dark
+    colorscheme noclown
 endif
 " }}}
 " Folding {{{
@@ -403,23 +401,6 @@ let g:airline_symbols.linenr = "■"
 " let g:airline_symbols.readonly = "ro"
 " let g:airline_symbols.linenr = "ln"
 
-" }}}
-" Font settings {{{
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=Input:h15
-  endif
-else
-  " If using ConEmu
-  if !empty($CONEMUBUILD)
-    set term=pcansi
-    set t_Co=256
-  endif
-endif
 " }}}
 " Misc {{{
 " ====
