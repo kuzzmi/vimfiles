@@ -67,28 +67,6 @@ vnoremap gj j
 vnoremap k gk
 vnoremap gk k
 
-" Remapping numbers to their symbols
-inoremap ! 1
-inoremap @ 2
-inoremap # 3
-inoremap $ 4
-inoremap % 5
-inoremap ^ 6
-inoremap & 7
-inoremap * 8
-inoremap ( 9
-inoremap ) 0
-inoremap 1 !
-inoremap 2 @
-inoremap 3 #
-inoremap 4 $
-inoremap 5 %
-inoremap 6 ^
-inoremap 7 &
-inoremap 8 *
-inoremap 9 (
-inoremap 0 )
-
 " Highlight and stay
 nnoremap * *N
 
