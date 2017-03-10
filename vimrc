@@ -92,17 +92,6 @@ inoremap 0 )
 " Highlight and stay
 nnoremap * *N
 
-imap <silent> <M-1> <c-r>=emmet#util#closePopup()<cr><c-r>=emmet#expandAbbr(0,"")<cr><CR><Esc>O
-inoremap <silent> <M-2> im<c-r>=snipMate#TriggerSnippet()<cr>
-
-" Testing a new "special char" layer
-inoremap <M-h> [
-inoremap <M-j> ]
-inoremap <M-k> {
-inoremap <M-l> }
-inoremap <M-y> <
-inoremap <M-u> >
-
 " Emmet.vim
 let g:user_emmet_leader_key='<C-q>'
 
@@ -242,6 +231,7 @@ let g:unite_source_menu_menus.bookmarks = {
 let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
+\   ['keyboard-rpg/client              [folder]', 'cd $HOME/Projects/keyboard-rpg/client/'],
 \   ['whubi/backend/api                [folder]', 'cd $HOME/Projects/whubi/backend/api'],
 \   ['probe-mobile                     [folder]', 'cd $HOME/Projects/probe-mobile'],
 \   ['probe-frontend                   [folder]', 'cd $HOME/Projects/probe-frontend'],
@@ -266,7 +256,6 @@ endfunction
 " Unite key mappings
 nnoremap <leader>f :<C-u>Unite -auto-resize -start-insert file_mru<cr>
 nnoremap <leader>r :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec/async:!<cr>
-nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
 nnoremap <leader>e :<C-u>Unite -start-insert -buffer-name=buffer buffer<cr>
 nnoremap <leader>b :<C-u>Unite -start-insert menu:bookmarks <cr>
 nnoremap <leader>g :<C-u>Unite -auto-resize -buffer-name=files -start-insert file_rec:<C-r>=substitute(expand('%:h'), "\\", "\/", "g")<cr><cr>
@@ -385,6 +374,7 @@ let g:airline_symbols.space = " "
 let g:airline_symbols.branch = ""
 let g:airline_symbols.readonly = ""
 let g:airline_symbols.linenr = "■"
+let g:airline_symbols.maxlinenr = "■"
 " let g:airline_left_sep = ""
 " let g:airline_left_alt_sep = ""
 " let g:airline_right_sep = ""
