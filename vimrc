@@ -180,6 +180,14 @@ nnoremap <silent> <F2> :!eslint --fix %<CR>
 inoremap <silent> <F2> <Esc>:!eslint --fix %<CR>
 
 " }}}
+" Elm Vim {{{
+" ==========
+"
+" Autoformat on save
+let g:elm_format_autosave = 1
+let g:elm_setup_keybindings = 0
+let g:elm_syntastic_show_warnings = 1
+" }}}
 " Unite.vim {{{
 " =========
 "
@@ -293,6 +301,10 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#use_vimproc = 1
+call neocomplete#util#set_default_dictionary(
+  \ 'g:neocomplete#sources#omni#input_patterns',
+  \ 'elm',
+  \ '\.')
 
 " }}}
 " Vim-go {{{
