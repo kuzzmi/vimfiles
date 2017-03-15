@@ -218,6 +218,7 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
 \   ['PULSE/forms                      [folder]', 'cd $HOME/Projects/PULSE/forms'],
 \   ['PULSE/                           [folder]', 'cd $HOME/Projects/PULSE/'],
 \   ['keyboard-rpg/client              [folder]', 'cd $HOME/Projects/keyboard-rpg/client/'],
+\   ['keyboard-rpg/client-elm          [folder]', 'cd $HOME/Projects/keyboard-rpg/client-elm/'],
 \   ['whubi/backend/api                [folder]', 'cd $HOME/Projects/whubi/backend/api'],
 \   ['probe-mobile                     [folder]', 'cd $HOME/Projects/probe-mobile'],
 \   ['probe-frontend                   [folder]', 'cd $HOME/Projects/probe-frontend'],
