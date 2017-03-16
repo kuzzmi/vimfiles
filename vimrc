@@ -18,9 +18,13 @@ set omnifunc=syntaxcomplete#Complete
 " ============
 "
 " Filetype specific omnifuncs
-autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+augroup omnifuncs
+    autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType elm setlocal omnifunc=elm#Complete
+augroup END
+
 "
 " Some Markdown settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
@@ -187,6 +191,8 @@ inoremap <silent> <F2> <Esc>:!eslint --fix %<CR>
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 let g:elm_syntastic_show_warnings = 1
+let g:elm_detailed_complete = 1
+au BufWritePost *.elm ElmMake
 " }}}
 " Unite.vim {{{
 " =========
@@ -274,38 +280,6 @@ endif
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
-
-" }}}
-" Neocomplete {{{
-" =========
-"
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Trigger after 3 chars
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#use_vimproc = 1
-call neocomplete#util#set_default_dictionary(
-  \ 'g:neocomplete#sources#omni#input_patterns',
-  \ 'elm',
-  \ '\.')
 
 " }}}
 " Vim-go {{{
@@ -500,6 +474,41 @@ let g:closetag_filenames = "*.html,*.js,*.jsx"
 " Per Project configurations
 set exrc
 set secure
+" }}}
+" Neocomplete {{{
+" =========
+"
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+" Trigger after 3 chars
+" let g:neocomplete#sources#syntax#min_keyword_length = 2
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  " return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+
+let g:neocomplete#use_vimproc = 1
+
+call neocomplete#util#set_default_dictionary(
+  \ 'g:neocomplete#sources#omni#input_patterns',
+  \ 'elm',
+  \ '\.')
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
